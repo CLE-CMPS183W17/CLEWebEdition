@@ -14,6 +14,7 @@
             echo $this->Form->input('prerequisites');
             echo $this->Form->input('concurrents');
             echo $this->Form->input('summer');
+            echo $this->Form->input('term_exclusive');
         ?>
     </fieldset>
     <?= $this->Form->button(__('Submit')) ?>

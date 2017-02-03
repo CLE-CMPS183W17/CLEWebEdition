@@ -30,8 +30,10 @@ class CourseFixture extends TestFixture
         'prerequisites' => ['type' => 'string', 'length' => null, 'default' => null, 'null' => true, 'collate' => null, 'comment' => null, 'precision' => null, 'fixed' => null],
         'concurrents' => ['type' => 'string', 'length' => null, 'default' => null, 'null' => true, 'collate' => null, 'comment' => null, 'precision' => null, 'fixed' => null],
         'summer' => ['type' => 'boolean', 'length' => null, 'default' => null, 'null' => true, 'comment' => null, 'precision' => null],
+        'term_exclusive' => ['type' => 'boolean', 'length' => null, 'default' => null, 'null' => true, 'comment' => null, 'precision' => null],
         '_constraints' => [
             'primary' => ['type' => 'primary', 'columns' => ['id'], 'length' => []],
+            'coursename_unique' => ['type' => 'unique', 'columns' => ['name'], 'length' => []],
         ],
     ];
     // @codingStandardsIgnoreEnd
@@ -48,7 +50,8 @@ class CourseFixture extends TestFixture
             'units' => 1,
             'prerequisites' => 'Lorem ipsum dolor sit amet',
             'concurrents' => 'Lorem ipsum dolor sit amet',
-            'summer' => 1
+            'summer' => 1,
+            'term_exclusive' => 1
         ],
     ];
 }

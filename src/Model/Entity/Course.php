@@ -12,6 +12,7 @@ use Cake\ORM\Entity;
  * @property string $prerequisites
  * @property string $concurrents
  * @property bool $summer
+ * @property bool $term_exclusive
  */
 class Course extends Entity
 {

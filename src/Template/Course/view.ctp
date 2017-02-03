@@ -34,5 +34,9 @@
             <th scope="row"><?= __('Summer') ?></th>
             <td><?= $course->summer ? __('Yes') : __('No'); ?></td>
         </tr>
+        <tr>
+            <th scope="row"><?= __('Term Exclusive') ?></th>
+            <td><?= $course->term_exclusive ? __('Yes') : __('No'); ?></td>
+        </tr>
     </table>
 </div>

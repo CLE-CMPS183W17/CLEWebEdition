@@ -15,6 +15,7 @@
                 <th scope="col"><?= $this->Paginator->sort('prerequisites') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('concurrents') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('summer') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('term_exclusive') ?></th>
                 <th scope="col" class="actions"><?= __('Actions') ?></th>
             </tr>
         </thead>
@@ -27,6 +28,7 @@
                 <td><?= h($course->prerequisites) ?></td>
                 <td><?= h($course->concurrents) ?></td>
                 <td><?= h($course->summer) ?></td>
+                <td><?= h($course->term_exclusive) ?></td>
                 <td class="actions">
                     <?= $this->Html->link(__('View'), ['action' => 'view', $course->id]) ?>
                     <?= $this->Html->link(__('Edit'), ['action' => 'edit', $course->id]) ?>
