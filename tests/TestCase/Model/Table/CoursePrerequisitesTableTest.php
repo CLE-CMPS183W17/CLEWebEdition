@@ -1,22 +1,22 @@
 <?php
 namespace App\Test\TestCase\Model\Table;
 
-use App\Model\Table\CourseTable;
+use App\Model\Table\CoursePrerequisitesTable;
 use Cake\ORM\TableRegistry;
 use Cake\TestSuite\TestCase;
 
 /**
- * App\Model\Table\CourseTable Test Case
+ * App\Model\Table\CoursePrerequisitesTable Test Case
  */
-class CourseTableTest extends TestCase
+class CoursePrerequisitesTableTest extends TestCase
 {
 
     /**
      * Test subject
      *
-     * @var \App\Model\Table\CourseTable
+     * @var \App\Model\Table\CoursePrerequisitesTable
      */
-    public $Course;
+    public $CoursePrerequisites;
 
     /**
      * Fixtures
@@ -24,11 +24,8 @@ class CourseTableTest extends TestCase
      * @var array
      */
     public $fixtures = [
-        'app.course',
-        'app.course_concurrents',
-        'app.courses',
-        'app.concurrents',
         'app.course_prerequisites',
+        'app.courses',
         'app.prerequisites'
     ];
 
@@ -40,8 +37,8 @@ class CourseTableTest extends TestCase
     public function setUp()
     {
         parent::setUp();
-        $config = TableRegistry::exists('Course') ? [] : ['className' => 'App\Model\Table\CourseTable'];
-        $this->Course = TableRegistry::get('Course', $config);
+        $config = TableRegistry::exists('CoursePrerequisites') ? [] : ['className' => 'App\Model\Table\CoursePrerequisitesTable'];
+        $this->CoursePrerequisites = TableRegistry::get('CoursePrerequisites', $config);
     }
 
     /**
@@ -51,7 +48,7 @@ class CourseTableTest extends TestCase
      */
     public function tearDown()
     {
-        unset($this->Course);
+        unset($this->CoursePrerequisites);
 
         parent::tearDown();
     }

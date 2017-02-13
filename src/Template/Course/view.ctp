@@ -15,14 +15,6 @@
             <td><?= h($course->name) ?></td>
         </tr>
         <tr>
-            <th scope="row"><?= __('Prerequisites') ?></th>
-            <td><?= h($course->prerequisites) ?></td>
-        </tr>
-        <tr>
-            <th scope="row"><?= __('Concurrents') ?></th>
-            <td><?= h($course->concurrents) ?></td>
-        </tr>
-        <tr>
             <th scope="row"><?= __('Id') ?></th>
             <td><?= $this->Number->format($course->id) ?></td>
         </tr>
@@ -35,8 +27,16 @@
             <td><?= $course->summer ? __('Yes') : __('No'); ?></td>
         </tr>
         <tr>
-            <th scope="row"><?= __('Term Exclusive') ?></th>
-            <td><?= $course->term_exclusive ? __('Yes') : __('No'); ?></td>
+            <th scope="row"><?= __('Fall') ?></th>
+            <td><?= $course->fall ? __('Yes') : __('No'); ?></td>
+        </tr>
+        <tr>
+            <th scope="row"><?= __('Winter') ?></th>
+            <td><?= $course->winter ? __('Yes') : __('No'); ?></td>
+        </tr>
+        <tr>
+            <th scope="row"><?= __('Spring') ?></th>
+            <td><?= $course->spring ? __('Yes') : __('No'); ?></td>
         </tr>
     </table>
 </div>

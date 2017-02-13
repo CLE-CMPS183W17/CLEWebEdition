@@ -9,10 +9,13 @@ use Cake\ORM\Entity;
  * @property int $id
  * @property string $name
  * @property int $units
- * @property string $prerequisites
- * @property string $concurrents
  * @property bool $summer
- * @property bool $term_exclusive
+ * @property bool $fall
+ * @property bool $winter
+ * @property bool $spring
+ *
+ * @property \App\Model\Entity\CourseConcurrent[] $course_concurrents
+ * @property \App\Model\Entity\CoursePrerequisite[] $course_prerequisites
  */
 class Course extends Entity
 {

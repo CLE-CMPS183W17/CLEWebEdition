@@ -11,10 +11,10 @@
         <?php
             echo $this->Form->input('name');
             echo $this->Form->input('units');
-            echo $this->Form->input('prerequisites');
-            echo $this->Form->input('concurrents');
             echo $this->Form->input('summer');
-            echo $this->Form->input('term_exclusive');
+            echo $this->Form->input('fall');
+            echo $this->Form->input('winter');
+            echo $this->Form->input('spring');
         ?>
     </fieldset>
     <?= $this->Form->button(__('Submit')) ?>
