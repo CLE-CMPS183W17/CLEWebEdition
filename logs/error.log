@@ -1,0 +1,322 @@
+2017-02-15 09:05:54 Error: [Cake\Routing\Exception\MissingControllerException] Controller class Index could not be found.
+Exception Attributes: array (
+  'class' => 'Index',
+  'plugin' => false,
+  'prefix' => false,
+  '_ext' => false,
+)
+Request URL: /index
+Stack Trace:
+#0 /Users/jameshuang1996/Desktop/github/CS183Team/CLEWebEdition/vendor/cakephp/cakephp/src/Http/ControllerFactory.php(72): Cake\Http\ControllerFactory->missingController(Object(Cake\Network\Request))
+#1 /Users/jameshuang1996/Desktop/github/CS183Team/CLEWebEdition/vendor/cakephp/cakephp/src/Http/ActionDispatcher.php(92): Cake\Http\ControllerFactory->create(Object(Cake\Network\Request), Object(Cake\Network\Response))
+#2 /Users/jameshuang1996/Desktop/github/CS183Team/CLEWebEdition/vendor/cakephp/cakephp/src/Http/BaseApplication.php(83): Cake\Http\ActionDispatcher->dispatch(Object(Cake\Network\Request), Object(Cake\Network\Response))
+#3 /Users/jameshuang1996/Desktop/github/CS183Team/CLEWebEdition/vendor/cakephp/cakephp/src/Http/Runner.php(65): Cake\Http\BaseApplication->__invoke(Object(Zend\Diactoros\ServerRequest), Object(Zend\Diactoros\Response), Object(Cake\Http\Runner))
+#4 /Users/jameshuang1996/Desktop/github/CS183Team/CLEWebEdition/vendor/cakephp/cakephp/src/Routing/Middleware/RoutingMiddleware.php(62): Cake\Http\Runner->__invoke(Object(Zend\Diactoros\ServerRequest), Object(Zend\Diactoros\Response))
+#5 /Users/jameshuang1996/Desktop/github/CS183Team/CLEWebEdition/vendor/cakephp/cakephp/src/Http/Runner.php(65): Cake\Routing\Middleware\RoutingMiddleware->__invoke(Object(Zend\Diactoros\ServerRequest), Object(Zend\Diactoros\Response), Object(Cake\Http\Runner))
+#6 /Users/jameshuang1996/Desktop/github/CS183Team/CLEWebEdition/vendor/cakephp/cakephp/src/Routing/Middleware/AssetMiddleware.php(88): Cake\Http\Runner->__invoke(Object(Zend\Diactoros\ServerRequest), Object(Zend\Diactoros\Response))
+#7 /Users/jameshuang1996/Desktop/github/CS183Team/CLEWebEdition/vendor/cakephp/cakephp/src/Http/Runner.php(65): Cake\Routing\Middleware\AssetMiddleware->__invoke(Object(Zend\Diactoros\ServerRequest), Object(Zend\Diactoros\Response), Object(Cake\Http\Runner))
+#8 /Users/jameshuang1996/Desktop/github/CS183Team/CLEWebEdition/vendor/cakephp/cakephp/src/Error/Middleware/ErrorHandlerMiddleware.php(81): Cake\Http\Runner->__invoke(Object(Zend\Diactoros\ServerRequest), Object(Zend\Diactoros\Response))
+#9 /Users/jameshuang1996/Desktop/github/CS183Team/CLEWebEdition/vendor/cakephp/cakephp/src/Http/Runner.php(65): Cake\Error\Middleware\ErrorHandlerMiddleware->__invoke(Object(Zend\Diactoros\ServerRequest), Object(Zend\Diactoros\Response), Object(Cake\Http\Runner))
+#10 /Users/jameshuang1996/Desktop/github/CS183Team/CLEWebEdition/vendor/cakephp/cakephp/src/Http/Runner.php(51): Cake\Http\Runner->__invoke(Object(Zend\Diactoros\ServerRequest), Object(Zend\Diactoros\Response))
+#11 /Users/jameshuang1996/Desktop/github/CS183Team/CLEWebEdition/vendor/cakephp/cakephp/src/Http/Server.php(90): Cake\Http\Runner->run(Object(Cake\Http\MiddlewareQueue), Object(Zend\Diactoros\ServerRequest), Object(Zend\Diactoros\Response))
+#12 /Users/jameshuang1996/Desktop/github/CS183Team/CLEWebEdition/webroot/index.php(37): Cake\Http\Server->run()
+#13 {main}
+
+
+2017-02-15 09:13:04 Error: [Cake\Routing\Exception\MissingControllerException] Controller class Index could not be found.
+Exception Attributes: array (
+  'class' => 'Index',
+  'plugin' => false,
+  'prefix' => false,
+  '_ext' => false,
+)
+Request URL: /index
+Stack Trace:
+#0 /Users/jameshuang1996/Desktop/github/CS183Team/CLEWebEdition/vendor/cakephp/cakephp/src/Http/ControllerFactory.php(72): Cake\Http\ControllerFactory->missingController(Object(Cake\Network\Request))
+#1 /Users/jameshuang1996/Desktop/github/CS183Team/CLEWebEdition/vendor/cakephp/cakephp/src/Http/ActionDispatcher.php(92): Cake\Http\ControllerFactory->create(Object(Cake\Network\Request), Object(Cake\Network\Response))
+#2 /Users/jameshuang1996/Desktop/github/CS183Team/CLEWebEdition/vendor/cakephp/cakephp/src/Http/BaseApplication.php(83): Cake\Http\ActionDispatcher->dispatch(Object(Cake\Network\Request), Object(Cake\Network\Response))
+#3 /Users/jameshuang1996/Desktop/github/CS183Team/CLEWebEdition/vendor/cakephp/cakephp/src/Http/Runner.php(65): Cake\Http\BaseApplication->__invoke(Object(Zend\Diactoros\ServerRequest), Object(Zend\Diactoros\Response), Object(Cake\Http\Runner))
+#4 /Users/jameshuang1996/Desktop/github/CS183Team/CLEWebEdition/vendor/cakephp/cakephp/src/Routing/Middleware/RoutingMiddleware.php(62): Cake\Http\Runner->__invoke(Object(Zend\Diactoros\ServerRequest), Object(Zend\Diactoros\Response))
+#5 /Users/jameshuang1996/Desktop/github/CS183Team/CLEWebEdition/vendor/cakephp/cakephp/src/Http/Runner.php(65): Cake\Routing\Middleware\RoutingMiddleware->__invoke(Object(Zend\Diactoros\ServerRequest), Object(Zend\Diactoros\Response), Object(Cake\Http\Runner))
+#6 /Users/jameshuang1996/Desktop/github/CS183Team/CLEWebEdition/vendor/cakephp/cakephp/src/Routing/Middleware/AssetMiddleware.php(88): Cake\Http\Runner->__invoke(Object(Zend\Diactoros\ServerRequest), Object(Zend\Diactoros\Response))
+#7 /Users/jameshuang1996/Desktop/github/CS183Team/CLEWebEdition/vendor/cakephp/cakephp/src/Http/Runner.php(65): Cake\Routing\Middleware\AssetMiddleware->__invoke(Object(Zend\Diactoros\ServerRequest), Object(Zend\Diactoros\Response), Object(Cake\Http\Runner))
+#8 /Users/jameshuang1996/Desktop/github/CS183Team/CLEWebEdition/vendor/cakephp/cakephp/src/Error/Middleware/ErrorHandlerMiddleware.php(81): Cake\Http\Runner->__invoke(Object(Zend\Diactoros\ServerRequest), Object(Zend\Diactoros\Response))
+#9 /Users/jameshuang1996/Desktop/github/CS183Team/CLEWebEdition/vendor/cakephp/cakephp/src/Http/Runner.php(65): Cake\Error\Middleware\ErrorHandlerMiddleware->__invoke(Object(Zend\Diactoros\ServerRequest), Object(Zend\Diactoros\Response), Object(Cake\Http\Runner))
+#10 /Users/jameshuang1996/Desktop/github/CS183Team/CLEWebEdition/vendor/cakephp/cakephp/src/Http/Runner.php(51): Cake\Http\Runner->__invoke(Object(Zend\Diactoros\ServerRequest), Object(Zend\Diactoros\Response))
+#11 /Users/jameshuang1996/Desktop/github/CS183Team/CLEWebEdition/vendor/cakephp/cakephp/src/Http/Server.php(90): Cake\Http\Runner->run(Object(Cake\Http\MiddlewareQueue), Object(Zend\Diactoros\ServerRequest), Object(Zend\Diactoros\Response))
+#12 /Users/jameshuang1996/Desktop/github/CS183Team/CLEWebEdition/webroot/index.php(37): Cake\Http\Server->run()
+#13 {main}
+
+
+2017-02-15 09:15:36 Error: [Cake\Routing\Exception\MissingControllerException] Controller class Index could not be found.
+Exception Attributes: array (
+  'class' => 'Index',
+  'plugin' => false,
+  'prefix' => false,
+  '_ext' => false,
+)
+Request URL: /index
+Stack Trace:
+#0 /Users/jameshuang1996/Desktop/github/CS183Team/CLEWebEdition/vendor/cakephp/cakephp/src/Http/ControllerFactory.php(72): Cake\Http\ControllerFactory->missingController(Object(Cake\Network\Request))
+#1 /Users/jameshuang1996/Desktop/github/CS183Team/CLEWebEdition/vendor/cakephp/cakephp/src/Http/ActionDispatcher.php(92): Cake\Http\ControllerFactory->create(Object(Cake\Network\Request), Object(Cake\Network\Response))
+#2 /Users/jameshuang1996/Desktop/github/CS183Team/CLEWebEdition/vendor/cakephp/cakephp/src/Http/BaseApplication.php(83): Cake\Http\ActionDispatcher->dispatch(Object(Cake\Network\Request), Object(Cake\Network\Response))
+#3 /Users/jameshuang1996/Desktop/github/CS183Team/CLEWebEdition/vendor/cakephp/cakephp/src/Http/Runner.php(65): Cake\Http\BaseApplication->__invoke(Object(Zend\Diactoros\ServerRequest), Object(Zend\Diactoros\Response), Object(Cake\Http\Runner))
+#4 /Users/jameshuang1996/Desktop/github/CS183Team/CLEWebEdition/vendor/cakephp/cakephp/src/Routing/Middleware/RoutingMiddleware.php(62): Cake\Http\Runner->__invoke(Object(Zend\Diactoros\ServerRequest), Object(Zend\Diactoros\Response))
+#5 /Users/jameshuang1996/Desktop/github/CS183Team/CLEWebEdition/vendor/cakephp/cakephp/src/Http/Runner.php(65): Cake\Routing\Middleware\RoutingMiddleware->__invoke(Object(Zend\Diactoros\ServerRequest), Object(Zend\Diactoros\Response), Object(Cake\Http\Runner))
+#6 /Users/jameshuang1996/Desktop/github/CS183Team/CLEWebEdition/vendor/cakephp/cakephp/src/Routing/Middleware/AssetMiddleware.php(88): Cake\Http\Runner->__invoke(Object(Zend\Diactoros\ServerRequest), Object(Zend\Diactoros\Response))
+#7 /Users/jameshuang1996/Desktop/github/CS183Team/CLEWebEdition/vendor/cakephp/cakephp/src/Http/Runner.php(65): Cake\Routing\Middleware\AssetMiddleware->__invoke(Object(Zend\Diactoros\ServerRequest), Object(Zend\Diactoros\Response), Object(Cake\Http\Runner))
+#8 /Users/jameshuang1996/Desktop/github/CS183Team/CLEWebEdition/vendor/cakephp/cakephp/src/Error/Middleware/ErrorHandlerMiddleware.php(81): Cake\Http\Runner->__invoke(Object(Zend\Diactoros\ServerRequest), Object(Zend\Diactoros\Response))
+#9 /Users/jameshuang1996/Desktop/github/CS183Team/CLEWebEdition/vendor/cakephp/cakephp/src/Http/Runner.php(65): Cake\Error\Middleware\ErrorHandlerMiddleware->__invoke(Object(Zend\Diactoros\ServerRequest), Object(Zend\Diactoros\Response), Object(Cake\Http\Runner))
+#10 /Users/jameshuang1996/Desktop/github/CS183Team/CLEWebEdition/vendor/cakephp/cakephp/src/Http/Runner.php(51): Cake\Http\Runner->__invoke(Object(Zend\Diactoros\ServerRequest), Object(Zend\Diactoros\Response))
+#11 /Users/jameshuang1996/Desktop/github/CS183Team/CLEWebEdition/vendor/cakephp/cakephp/src/Http/Server.php(90): Cake\Http\Runner->run(Object(Cake\Http\MiddlewareQueue), Object(Zend\Diactoros\ServerRequest), Object(Zend\Diactoros\Response))
+#12 /Users/jameshuang1996/Desktop/github/CS183Team/CLEWebEdition/webroot/index.php(37): Cake\Http\Server->run()
+#13 {main}
+
+
+2017-02-15 09:15:38 Error: [Cake\Routing\Exception\MissingControllerException] Controller class Index could not be found.
+Exception Attributes: array (
+  'class' => 'Index',
+  'plugin' => false,
+  'prefix' => false,
+  '_ext' => false,
+)
+Request URL: /index
+Stack Trace:
+#0 /Users/jameshuang1996/Desktop/github/CS183Team/CLEWebEdition/vendor/cakephp/cakephp/src/Http/ControllerFactory.php(72): Cake\Http\ControllerFactory->missingController(Object(Cake\Network\Request))
+#1 /Users/jameshuang1996/Desktop/github/CS183Team/CLEWebEdition/vendor/cakephp/cakephp/src/Http/ActionDispatcher.php(92): Cake\Http\ControllerFactory->create(Object(Cake\Network\Request), Object(Cake\Network\Response))
+#2 /Users/jameshuang1996/Desktop/github/CS183Team/CLEWebEdition/vendor/cakephp/cakephp/src/Http/BaseApplication.php(83): Cake\Http\ActionDispatcher->dispatch(Object(Cake\Network\Request), Object(Cake\Network\Response))
+#3 /Users/jameshuang1996/Desktop/github/CS183Team/CLEWebEdition/vendor/cakephp/cakephp/src/Http/Runner.php(65): Cake\Http\BaseApplication->__invoke(Object(Zend\Diactoros\ServerRequest), Object(Zend\Diactoros\Response), Object(Cake\Http\Runner))
+#4 /Users/jameshuang1996/Desktop/github/CS183Team/CLEWebEdition/vendor/cakephp/cakephp/src/Routing/Middleware/RoutingMiddleware.php(62): Cake\Http\Runner->__invoke(Object(Zend\Diactoros\ServerRequest), Object(Zend\Diactoros\Response))
+#5 /Users/jameshuang1996/Desktop/github/CS183Team/CLEWebEdition/vendor/cakephp/cakephp/src/Http/Runner.php(65): Cake\Routing\Middleware\RoutingMiddleware->__invoke(Object(Zend\Diactoros\ServerRequest), Object(Zend\Diactoros\Response), Object(Cake\Http\Runner))
+#6 /Users/jameshuang1996/Desktop/github/CS183Team/CLEWebEdition/vendor/cakephp/cakephp/src/Routing/Middleware/AssetMiddleware.php(88): Cake\Http\Runner->__invoke(Object(Zend\Diactoros\ServerRequest), Object(Zend\Diactoros\Response))
+#7 /Users/jameshuang1996/Desktop/github/CS183Team/CLEWebEdition/vendor/cakephp/cakephp/src/Http/Runner.php(65): Cake\Routing\Middleware\AssetMiddleware->__invoke(Object(Zend\Diactoros\ServerRequest), Object(Zend\Diactoros\Response), Object(Cake\Http\Runner))
+#8 /Users/jameshuang1996/Desktop/github/CS183Team/CLEWebEdition/vendor/cakephp/cakephp/src/Error/Middleware/ErrorHandlerMiddleware.php(81): Cake\Http\Runner->__invoke(Object(Zend\Diactoros\ServerRequest), Object(Zend\Diactoros\Response))
+#9 /Users/jameshuang1996/Desktop/github/CS183Team/CLEWebEdition/vendor/cakephp/cakephp/src/Http/Runner.php(65): Cake\Error\Middleware\ErrorHandlerMiddleware->__invoke(Object(Zend\Diactoros\ServerRequest), Object(Zend\Diactoros\Response), Object(Cake\Http\Runner))
+#10 /Users/jameshuang1996/Desktop/github/CS183Team/CLEWebEdition/vendor/cakephp/cakephp/src/Http/Runner.php(51): Cake\Http\Runner->__invoke(Object(Zend\Diactoros\ServerRequest), Object(Zend\Diactoros\Response))
+#11 /Users/jameshuang1996/Desktop/github/CS183Team/CLEWebEdition/vendor/cakephp/cakephp/src/Http/Server.php(90): Cake\Http\Runner->run(Object(Cake\Http\MiddlewareQueue), Object(Zend\Diactoros\ServerRequest), Object(Zend\Diactoros\Response))
+#12 /Users/jameshuang1996/Desktop/github/CS183Team/CLEWebEdition/webroot/index.php(37): Cake\Http\Server->run()
+#13 {main}
+
+
+2017-02-15 09:17:34 Error: [Cake\Routing\Exception\MissingControllerException] Controller class Index could not be found.
+Exception Attributes: array (
+  'class' => 'Index',
+  'plugin' => false,
+  'prefix' => false,
+  '_ext' => false,
+)
+Request URL: /index
+Stack Trace:
+#0 /Users/jameshuang1996/Desktop/github/CS183Team/CLEWebEdition/vendor/cakephp/cakephp/src/Http/ControllerFactory.php(72): Cake\Http\ControllerFactory->missingController(Object(Cake\Network\Request))
+#1 /Users/jameshuang1996/Desktop/github/CS183Team/CLEWebEdition/vendor/cakephp/cakephp/src/Http/ActionDispatcher.php(92): Cake\Http\ControllerFactory->create(Object(Cake\Network\Request), Object(Cake\Network\Response))
+#2 /Users/jameshuang1996/Desktop/github/CS183Team/CLEWebEdition/vendor/cakephp/cakephp/src/Http/BaseApplication.php(83): Cake\Http\ActionDispatcher->dispatch(Object(Cake\Network\Request), Object(Cake\Network\Response))
+#3 /Users/jameshuang1996/Desktop/github/CS183Team/CLEWebEdition/vendor/cakephp/cakephp/src/Http/Runner.php(65): Cake\Http\BaseApplication->__invoke(Object(Zend\Diactoros\ServerRequest), Object(Zend\Diactoros\Response), Object(Cake\Http\Runner))
+#4 /Users/jameshuang1996/Desktop/github/CS183Team/CLEWebEdition/vendor/cakephp/cakephp/src/Routing/Middleware/RoutingMiddleware.php(62): Cake\Http\Runner->__invoke(Object(Zend\Diactoros\ServerRequest), Object(Zend\Diactoros\Response))
+#5 /Users/jameshuang1996/Desktop/github/CS183Team/CLEWebEdition/vendor/cakephp/cakephp/src/Http/Runner.php(65): Cake\Routing\Middleware\RoutingMiddleware->__invoke(Object(Zend\Diactoros\ServerRequest), Object(Zend\Diactoros\Response), Object(Cake\Http\Runner))
+#6 /Users/jameshuang1996/Desktop/github/CS183Team/CLEWebEdition/vendor/cakephp/cakephp/src/Routing/Middleware/AssetMiddleware.php(88): Cake\Http\Runner->__invoke(Object(Zend\Diactoros\ServerRequest), Object(Zend\Diactoros\Response))
+#7 /Users/jameshuang1996/Desktop/github/CS183Team/CLEWebEdition/vendor/cakephp/cakephp/src/Http/Runner.php(65): Cake\Routing\Middleware\AssetMiddleware->__invoke(Object(Zend\Diactoros\ServerRequest), Object(Zend\Diactoros\Response), Object(Cake\Http\Runner))
+#8 /Users/jameshuang1996/Desktop/github/CS183Team/CLEWebEdition/vendor/cakephp/cakephp/src/Error/Middleware/ErrorHandlerMiddleware.php(81): Cake\Http\Runner->__invoke(Object(Zend\Diactoros\ServerRequest), Object(Zend\Diactoros\Response))
+#9 /Users/jameshuang1996/Desktop/github/CS183Team/CLEWebEdition/vendor/cakephp/cakephp/src/Http/Runner.php(65): Cake\Error\Middleware\ErrorHandlerMiddleware->__invoke(Object(Zend\Diactoros\ServerRequest), Object(Zend\Diactoros\Response), Object(Cake\Http\Runner))
+#10 /Users/jameshuang1996/Desktop/github/CS183Team/CLEWebEdition/vendor/cakephp/cakephp/src/Http/Runner.php(51): Cake\Http\Runner->__invoke(Object(Zend\Diactoros\ServerRequest), Object(Zend\Diactoros\Response))
+#11 /Users/jameshuang1996/Desktop/github/CS183Team/CLEWebEdition/vendor/cakephp/cakephp/src/Http/Server.php(90): Cake\Http\Runner->run(Object(Cake\Http\MiddlewareQueue), Object(Zend\Diactoros\ServerRequest), Object(Zend\Diactoros\Response))
+#12 /Users/jameshuang1996/Desktop/github/CS183Team/CLEWebEdition/webroot/index.php(37): Cake\Http\Server->run()
+#13 {main}
+
+
+2017-02-15 09:17:34 Error: [Cake\Routing\Exception\MissingControllerException] Controller class Index could not be found.
+Exception Attributes: array (
+  'class' => 'Index',
+  'plugin' => false,
+  'prefix' => false,
+  '_ext' => false,
+)
+Request URL: /index
+Stack Trace:
+#0 /Users/jameshuang1996/Desktop/github/CS183Team/CLEWebEdition/vendor/cakephp/cakephp/src/Http/ControllerFactory.php(72): Cake\Http\ControllerFactory->missingController(Object(Cake\Network\Request))
+#1 /Users/jameshuang1996/Desktop/github/CS183Team/CLEWebEdition/vendor/cakephp/cakephp/src/Http/ActionDispatcher.php(92): Cake\Http\ControllerFactory->create(Object(Cake\Network\Request), Object(Cake\Network\Response))
+#2 /Users/jameshuang1996/Desktop/github/CS183Team/CLEWebEdition/vendor/cakephp/cakephp/src/Http/BaseApplication.php(83): Cake\Http\ActionDispatcher->dispatch(Object(Cake\Network\Request), Object(Cake\Network\Response))
+#3 /Users/jameshuang1996/Desktop/github/CS183Team/CLEWebEdition/vendor/cakephp/cakephp/src/Http/Runner.php(65): Cake\Http\BaseApplication->__invoke(Object(Zend\Diactoros\ServerRequest), Object(Zend\Diactoros\Response), Object(Cake\Http\Runner))
+#4 /Users/jameshuang1996/Desktop/github/CS183Team/CLEWebEdition/vendor/cakephp/cakephp/src/Routing/Middleware/RoutingMiddleware.php(62): Cake\Http\Runner->__invoke(Object(Zend\Diactoros\ServerRequest), Object(Zend\Diactoros\Response))
+#5 /Users/jameshuang1996/Desktop/github/CS183Team/CLEWebEdition/vendor/cakephp/cakephp/src/Http/Runner.php(65): Cake\Routing\Middleware\RoutingMiddleware->__invoke(Object(Zend\Diactoros\ServerRequest), Object(Zend\Diactoros\Response), Object(Cake\Http\Runner))
+#6 /Users/jameshuang1996/Desktop/github/CS183Team/CLEWebEdition/vendor/cakephp/cakephp/src/Routing/Middleware/AssetMiddleware.php(88): Cake\Http\Runner->__invoke(Object(Zend\Diactoros\ServerRequest), Object(Zend\Diactoros\Response))
+#7 /Users/jameshuang1996/Desktop/github/CS183Team/CLEWebEdition/vendor/cakephp/cakephp/src/Http/Runner.php(65): Cake\Routing\Middleware\AssetMiddleware->__invoke(Object(Zend\Diactoros\ServerRequest), Object(Zend\Diactoros\Response), Object(Cake\Http\Runner))
+#8 /Users/jameshuang1996/Desktop/github/CS183Team/CLEWebEdition/vendor/cakephp/cakephp/src/Error/Middleware/ErrorHandlerMiddleware.php(81): Cake\Http\Runner->__invoke(Object(Zend\Diactoros\ServerRequest), Object(Zend\Diactoros\Response))
+#9 /Users/jameshuang1996/Desktop/github/CS183Team/CLEWebEdition/vendor/cakephp/cakephp/src/Http/Runner.php(65): Cake\Error\Middleware\ErrorHandlerMiddleware->__invoke(Object(Zend\Diactoros\ServerRequest), Object(Zend\Diactoros\Response), Object(Cake\Http\Runner))
+#10 /Users/jameshuang1996/Desktop/github/CS183Team/CLEWebEdition/vendor/cakephp/cakephp/src/Http/Runner.php(51): Cake\Http\Runner->__invoke(Object(Zend\Diactoros\ServerRequest), Object(Zend\Diactoros\Response))
+#11 /Users/jameshuang1996/Desktop/github/CS183Team/CLEWebEdition/vendor/cakephp/cakephp/src/Http/Server.php(90): Cake\Http\Runner->run(Object(Cake\Http\MiddlewareQueue), Object(Zend\Diactoros\ServerRequest), Object(Zend\Diactoros\Response))
+#12 /Users/jameshuang1996/Desktop/github/CS183Team/CLEWebEdition/webroot/index.php(37): Cake\Http\Server->run()
+#13 {main}
+
+
+2017-02-15 09:33:14 Error: [Cake\Routing\Exception\MissingControllerException] Controller class Courses could not be found.
+Exception Attributes: array (
+  'class' => 'Courses',
+  'plugin' => false,
+  'prefix' => false,
+  '_ext' => false,
+)
+Request URL: /courses
+Stack Trace:
+#0 /Users/jameshuang1996/Desktop/github/CS183Team/CLEWebEdition/vendor/cakephp/cakephp/src/Http/ControllerFactory.php(72): Cake\Http\ControllerFactory->missingController(Object(Cake\Network\Request))
+#1 /Users/jameshuang1996/Desktop/github/CS183Team/CLEWebEdition/vendor/cakephp/cakephp/src/Http/ActionDispatcher.php(92): Cake\Http\ControllerFactory->create(Object(Cake\Network\Request), Object(Cake\Network\Response))
+#2 /Users/jameshuang1996/Desktop/github/CS183Team/CLEWebEdition/vendor/cakephp/cakephp/src/Http/BaseApplication.php(83): Cake\Http\ActionDispatcher->dispatch(Object(Cake\Network\Request), Object(Cake\Network\Response))
+#3 /Users/jameshuang1996/Desktop/github/CS183Team/CLEWebEdition/vendor/cakephp/cakephp/src/Http/Runner.php(65): Cake\Http\BaseApplication->__invoke(Object(Zend\Diactoros\ServerRequest), Object(Zend\Diactoros\Response), Object(Cake\Http\Runner))
+#4 /Users/jameshuang1996/Desktop/github/CS183Team/CLEWebEdition/vendor/cakephp/cakephp/src/Routing/Middleware/RoutingMiddleware.php(62): Cake\Http\Runner->__invoke(Object(Zend\Diactoros\ServerRequest), Object(Zend\Diactoros\Response))
+#5 /Users/jameshuang1996/Desktop/github/CS183Team/CLEWebEdition/vendor/cakephp/cakephp/src/Http/Runner.php(65): Cake\Routing\Middleware\RoutingMiddleware->__invoke(Object(Zend\Diactoros\ServerRequest), Object(Zend\Diactoros\Response), Object(Cake\Http\Runner))
+#6 /Users/jameshuang1996/Desktop/github/CS183Team/CLEWebEdition/vendor/cakephp/cakephp/src/Routing/Middleware/AssetMiddleware.php(88): Cake\Http\Runner->__invoke(Object(Zend\Diactoros\ServerRequest), Object(Zend\Diactoros\Response))
+#7 /Users/jameshuang1996/Desktop/github/CS183Team/CLEWebEdition/vendor/cakephp/cakephp/src/Http/Runner.php(65): Cake\Routing\Middleware\AssetMiddleware->__invoke(Object(Zend\Diactoros\ServerRequest), Object(Zend\Diactoros\Response), Object(Cake\Http\Runner))
+#8 /Users/jameshuang1996/Desktop/github/CS183Team/CLEWebEdition/vendor/cakephp/cakephp/src/Error/Middleware/ErrorHandlerMiddleware.php(81): Cake\Http\Runner->__invoke(Object(Zend\Diactoros\ServerRequest), Object(Zend\Diactoros\Response))
+#9 /Users/jameshuang1996/Desktop/github/CS183Team/CLEWebEdition/vendor/cakephp/cakephp/src/Http/Runner.php(65): Cake\Error\Middleware\ErrorHandlerMiddleware->__invoke(Object(Zend\Diactoros\ServerRequest), Object(Zend\Diactoros\Response), Object(Cake\Http\Runner))
+#10 /Users/jameshuang1996/Desktop/github/CS183Team/CLEWebEdition/vendor/cakephp/cakephp/src/Http/Runner.php(51): Cake\Http\Runner->__invoke(Object(Zend\Diactoros\ServerRequest), Object(Zend\Diactoros\Response))
+#11 /Users/jameshuang1996/Desktop/github/CS183Team/CLEWebEdition/vendor/cakephp/cakephp/src/Http/Server.php(90): Cake\Http\Runner->run(Object(Cake\Http\MiddlewareQueue), Object(Zend\Diactoros\ServerRequest), Object(Zend\Diactoros\Response))
+#12 /Users/jameshuang1996/Desktop/github/CS183Team/CLEWebEdition/webroot/index.php(37): Cake\Http\Server->run()
+#13 {main}
+
+
+2017-02-15 09:33:33 Error: [Cake\Database\Exception] Cannot describe course. It has 0 columns.
+Request URL: /course
+Stack Trace:
+#0 /Users/jameshuang1996/Desktop/github/CS183Team/CLEWebEdition/vendor/cakephp/cakephp/src/Database/Schema/CachedCollection.php(63): Cake\Database\Schema\Collection->describe('course', Array)
+#1 /Users/jameshuang1996/Desktop/github/CS183Team/CLEWebEdition/vendor/cakephp/cakephp/src/ORM/Table.php(440): Cake\Database\Schema\CachedCollection->describe('course')
+#2 /Users/jameshuang1996/Desktop/github/CS183Team/CLEWebEdition/vendor/cakephp/cakephp/src/ORM/Query.php(210): Cake\ORM\Table->schema()
+#3 /Users/jameshuang1996/Desktop/github/CS183Team/CLEWebEdition/vendor/cakephp/cakephp/src/ORM/Query.php(167): Cake\ORM\Query->addDefaultTypes(Object(App\Model\Table\CourseTable))
+#4 /Users/jameshuang1996/Desktop/github/CS183Team/CLEWebEdition/vendor/cakephp/cakephp/src/ORM/Table.php(1336): Cake\ORM\Query->__construct(Object(Cake\Database\Connection), Object(App\Model\Table\CourseTable))
+#5 /Users/jameshuang1996/Desktop/github/CS183Team/CLEWebEdition/vendor/cakephp/cakephp/src/ORM/Table.php(964): Cake\ORM\Table->query()
+#6 /Users/jameshuang1996/Desktop/github/CS183Team/CLEWebEdition/vendor/cakephp/cakephp/src/Controller/Component/PaginatorComponent.php(184): Cake\ORM\Table->find('all', Array)
+#7 /Users/jameshuang1996/Desktop/github/CS183Team/CLEWebEdition/vendor/cakephp/cakephp/src/Controller/Controller.php(713): Cake\Controller\Component\PaginatorComponent->paginate(Object(App\Model\Table\CourseTable), Array)
+#8 /Users/jameshuang1996/Desktop/github/CS183Team/CLEWebEdition/src/Controller/CourseController.php(21): Cake\Controller\Controller->paginate(Object(App\Model\Table\CourseTable))
+#9 [internal function]: App\Controller\CourseController->index()
+#10 /Users/jameshuang1996/Desktop/github/CS183Team/CLEWebEdition/vendor/cakephp/cakephp/src/Controller/Controller.php(435): call_user_func_array(Array, Array)
+#11 /Users/jameshuang1996/Desktop/github/CS183Team/CLEWebEdition/vendor/cakephp/cakephp/src/Http/ActionDispatcher.php(121): Cake\Controller\Controller->invokeAction()
+#12 /Users/jameshuang1996/Desktop/github/CS183Team/CLEWebEdition/vendor/cakephp/cakephp/src/Http/ActionDispatcher.php(95): Cake\Http\ActionDispatcher->_invoke(Object(App\Controller\CourseController))
+#13 /Users/jameshuang1996/Desktop/github/CS183Team/CLEWebEdition/vendor/cakephp/cakephp/src/Http/BaseApplication.php(83): Cake\Http\ActionDispatcher->dispatch(Object(Cake\Network\Request), Object(Cake\Network\Response))
+#14 /Users/jameshuang1996/Desktop/github/CS183Team/CLEWebEdition/vendor/cakephp/cakephp/src/Http/Runner.php(65): Cake\Http\BaseApplication->__invoke(Object(Zend\Diactoros\ServerRequest), Object(Zend\Diactoros\Response), Object(Cake\Http\Runner))
+#15 /Users/jameshuang1996/Desktop/github/CS183Team/CLEWebEdition/vendor/cakephp/cakephp/src/Routing/Middleware/RoutingMiddleware.php(62): Cake\Http\Runner->__invoke(Object(Zend\Diactoros\ServerRequest), Object(Zend\Diactoros\Response))
+#16 /Users/jameshuang1996/Desktop/github/CS183Team/CLEWebEdition/vendor/cakephp/cakephp/src/Http/Runner.php(65): Cake\Routing\Middleware\RoutingMiddleware->__invoke(Object(Zend\Diactoros\ServerRequest), Object(Zend\Diactoros\Response), Object(Cake\Http\Runner))
+#17 /Users/jameshuang1996/Desktop/github/CS183Team/CLEWebEdition/vendor/cakephp/cakephp/src/Routing/Middleware/AssetMiddleware.php(88): Cake\Http\Runner->__invoke(Object(Zend\Diactoros\ServerRequest), Object(Zend\Diactoros\Response))
+#18 /Users/jameshuang1996/Desktop/github/CS183Team/CLEWebEdition/vendor/cakephp/cakephp/src/Http/Runner.php(65): Cake\Routing\Middleware\AssetMiddleware->__invoke(Object(Zend\Diactoros\ServerRequest), Object(Zend\Diactoros\Response), Object(Cake\Http\Runner))
+#19 /Users/jameshuang1996/Desktop/github/CS183Team/CLEWebEdition/vendor/cakephp/cakephp/src/Error/Middleware/ErrorHandlerMiddleware.php(81): Cake\Http\Runner->__invoke(Object(Zend\Diactoros\ServerRequest), Object(Zend\Diactoros\Response))
+#20 /Users/jameshuang1996/Desktop/github/CS183Team/CLEWebEdition/vendor/cakephp/cakephp/src/Http/Runner.php(65): Cake\Error\Middleware\ErrorHandlerMiddleware->__invoke(Object(Zend\Diactoros\ServerRequest), Object(Zend\Diactoros\Response), Object(Cake\Http\Runner))
+#21 /Users/jameshuang1996/Desktop/github/CS183Team/CLEWebEdition/vendor/cakephp/cakephp/src/Http/Runner.php(51): Cake\Http\Runner->__invoke(Object(Zend\Diactoros\ServerRequest), Object(Zend\Diactoros\Response))
+#22 /Users/jameshuang1996/Desktop/github/CS183Team/CLEWebEdition/vendor/cakephp/cakephp/src/Http/Server.php(90): Cake\Http\Runner->run(Object(Cake\Http\MiddlewareQueue), Object(Zend\Diactoros\ServerRequest), Object(Zend\Diactoros\Response))
+#23 /Users/jameshuang1996/Desktop/github/CS183Team/CLEWebEdition/webroot/index.php(37): Cake\Http\Server->run()
+#24 {main}
+
+
+2017-02-15 09:33:33 Error: [Cake\Routing\Exception\MissingControllerException] Controller class Courses could not be found.
+Exception Attributes: array (
+  'class' => 'Courses',
+  'plugin' => false,
+  'prefix' => false,
+  '_ext' => false,
+)
+Request URL: /courses
+Stack Trace:
+#0 /Users/jameshuang1996/Desktop/github/CS183Team/CLEWebEdition/vendor/cakephp/cakephp/src/Http/ControllerFactory.php(72): Cake\Http\ControllerFactory->missingController(Object(Cake\Network\Request))
+#1 /Users/jameshuang1996/Desktop/github/CS183Team/CLEWebEdition/vendor/cakephp/cakephp/src/Http/ActionDispatcher.php(92): Cake\Http\ControllerFactory->create(Object(Cake\Network\Request), Object(Cake\Network\Response))
+#2 /Users/jameshuang1996/Desktop/github/CS183Team/CLEWebEdition/vendor/cakephp/cakephp/src/Http/BaseApplication.php(83): Cake\Http\ActionDispatcher->dispatch(Object(Cake\Network\Request), Object(Cake\Network\Response))
+#3 /Users/jameshuang1996/Desktop/github/CS183Team/CLEWebEdition/vendor/cakephp/cakephp/src/Http/Runner.php(65): Cake\Http\BaseApplication->__invoke(Object(Zend\Diactoros\ServerRequest), Object(Zend\Diactoros\Response), Object(Cake\Http\Runner))
+#4 /Users/jameshuang1996/Desktop/github/CS183Team/CLEWebEdition/vendor/cakephp/cakephp/src/Routing/Middleware/RoutingMiddleware.php(62): Cake\Http\Runner->__invoke(Object(Zend\Diactoros\ServerRequest), Object(Zend\Diactoros\Response))
+#5 /Users/jameshuang1996/Desktop/github/CS183Team/CLEWebEdition/vendor/cakephp/cakephp/src/Http/Runner.php(65): Cake\Routing\Middleware\RoutingMiddleware->__invoke(Object(Zend\Diactoros\ServerRequest), Object(Zend\Diactoros\Response), Object(Cake\Http\Runner))
+#6 /Users/jameshuang1996/Desktop/github/CS183Team/CLEWebEdition/vendor/cakephp/cakephp/src/Routing/Middleware/AssetMiddleware.php(88): Cake\Http\Runner->__invoke(Object(Zend\Diactoros\ServerRequest), Object(Zend\Diactoros\Response))
+#7 /Users/jameshuang1996/Desktop/github/CS183Team/CLEWebEdition/vendor/cakephp/cakephp/src/Http/Runner.php(65): Cake\Routing\Middleware\AssetMiddleware->__invoke(Object(Zend\Diactoros\ServerRequest), Object(Zend\Diactoros\Response), Object(Cake\Http\Runner))
+#8 /Users/jameshuang1996/Desktop/github/CS183Team/CLEWebEdition/vendor/cakephp/cakephp/src/Error/Middleware/ErrorHandlerMiddleware.php(81): Cake\Http\Runner->__invoke(Object(Zend\Diactoros\ServerRequest), Object(Zend\Diactoros\Response))
+#9 /Users/jameshuang1996/Desktop/github/CS183Team/CLEWebEdition/vendor/cakephp/cakephp/src/Http/Runner.php(65): Cake\Error\Middleware\ErrorHandlerMiddleware->__invoke(Object(Zend\Diactoros\ServerRequest), Object(Zend\Diactoros\Response), Object(Cake\Http\Runner))
+#10 /Users/jameshuang1996/Desktop/github/CS183Team/CLEWebEdition/vendor/cakephp/cakephp/src/Http/Runner.php(51): Cake\Http\Runner->__invoke(Object(Zend\Diactoros\ServerRequest), Object(Zend\Diactoros\Response))
+#11 /Users/jameshuang1996/Desktop/github/CS183Team/CLEWebEdition/vendor/cakephp/cakephp/src/Http/Server.php(90): Cake\Http\Runner->run(Object(Cake\Http\MiddlewareQueue), Object(Zend\Diactoros\ServerRequest), Object(Zend\Diactoros\Response))
+#12 /Users/jameshuang1996/Desktop/github/CS183Team/CLEWebEdition/webroot/index.php(37): Cake\Http\Server->run()
+#13 {main}
+
+
+2017-02-15 09:42:18 Error: [Cake\Database\Exception] Cannot describe course. It has 0 columns.
+Request URL: /course
+Stack Trace:
+#0 /Users/jameshuang1996/Desktop/github/CS183Team/CLEWebEdition/vendor/cakephp/cakephp/src/Database/Schema/CachedCollection.php(63): Cake\Database\Schema\Collection->describe('course', Array)
+#1 /Users/jameshuang1996/Desktop/github/CS183Team/CLEWebEdition/vendor/cakephp/cakephp/src/ORM/Table.php(440): Cake\Database\Schema\CachedCollection->describe('course')
+#2 /Users/jameshuang1996/Desktop/github/CS183Team/CLEWebEdition/vendor/cakephp/cakephp/src/ORM/Query.php(210): Cake\ORM\Table->schema()
+#3 /Users/jameshuang1996/Desktop/github/CS183Team/CLEWebEdition/vendor/cakephp/cakephp/src/ORM/Query.php(167): Cake\ORM\Query->addDefaultTypes(Object(App\Model\Table\CourseTable))
+#4 /Users/jameshuang1996/Desktop/github/CS183Team/CLEWebEdition/vendor/cakephp/cakephp/src/ORM/Table.php(1336): Cake\ORM\Query->__construct(Object(Cake\Database\Connection), Object(App\Model\Table\CourseTable))
+#5 /Users/jameshuang1996/Desktop/github/CS183Team/CLEWebEdition/vendor/cakephp/cakephp/src/ORM/Table.php(964): Cake\ORM\Table->query()
+#6 /Users/jameshuang1996/Desktop/github/CS183Team/CLEWebEdition/vendor/cakephp/cakephp/src/Controller/Component/PaginatorComponent.php(184): Cake\ORM\Table->find('all', Array)
+#7 /Users/jameshuang1996/Desktop/github/CS183Team/CLEWebEdition/vendor/cakephp/cakephp/src/Controller/Controller.php(713): Cake\Controller\Component\PaginatorComponent->paginate(Object(App\Model\Table\CourseTable), Array)
+#8 /Users/jameshuang1996/Desktop/github/CS183Team/CLEWebEdition/src/Controller/CourseController.php(21): Cake\Controller\Controller->paginate(Object(App\Model\Table\CourseTable))
+#9 [internal function]: App\Controller\CourseController->index()
+#10 /Users/jameshuang1996/Desktop/github/CS183Team/CLEWebEdition/vendor/cakephp/cakephp/src/Controller/Controller.php(435): call_user_func_array(Array, Array)
+#11 /Users/jameshuang1996/Desktop/github/CS183Team/CLEWebEdition/vendor/cakephp/cakephp/src/Http/ActionDispatcher.php(121): Cake\Controller\Controller->invokeAction()
+#12 /Users/jameshuang1996/Desktop/github/CS183Team/CLEWebEdition/vendor/cakephp/cakephp/src/Http/ActionDispatcher.php(95): Cake\Http\ActionDispatcher->_invoke(Object(App\Controller\CourseController))
+#13 /Users/jameshuang1996/Desktop/github/CS183Team/CLEWebEdition/vendor/cakephp/cakephp/src/Http/BaseApplication.php(83): Cake\Http\ActionDispatcher->dispatch(Object(Cake\Network\Request), Object(Cake\Network\Response))
+#14 /Users/jameshuang1996/Desktop/github/CS183Team/CLEWebEdition/vendor/cakephp/cakephp/src/Http/Runner.php(65): Cake\Http\BaseApplication->__invoke(Object(Zend\Diactoros\ServerRequest), Object(Zend\Diactoros\Response), Object(Cake\Http\Runner))
+#15 /Users/jameshuang1996/Desktop/github/CS183Team/CLEWebEdition/vendor/cakephp/cakephp/src/Routing/Middleware/RoutingMiddleware.php(62): Cake\Http\Runner->__invoke(Object(Zend\Diactoros\ServerRequest), Object(Zend\Diactoros\Response))
+#16 /Users/jameshuang1996/Desktop/github/CS183Team/CLEWebEdition/vendor/cakephp/cakephp/src/Http/Runner.php(65): Cake\Routing\Middleware\RoutingMiddleware->__invoke(Object(Zend\Diactoros\ServerRequest), Object(Zend\Diactoros\Response), Object(Cake\Http\Runner))
+#17 /Users/jameshuang1996/Desktop/github/CS183Team/CLEWebEdition/vendor/cakephp/cakephp/src/Routing/Middleware/AssetMiddleware.php(88): Cake\Http\Runner->__invoke(Object(Zend\Diactoros\ServerRequest), Object(Zend\Diactoros\Response))
+#18 /Users/jameshuang1996/Desktop/github/CS183Team/CLEWebEdition/vendor/cakephp/cakephp/src/Http/Runner.php(65): Cake\Routing\Middleware\AssetMiddleware->__invoke(Object(Zend\Diactoros\ServerRequest), Object(Zend\Diactoros\Response), Object(Cake\Http\Runner))
+#19 /Users/jameshuang1996/Desktop/github/CS183Team/CLEWebEdition/vendor/cakephp/cakephp/src/Error/Middleware/ErrorHandlerMiddleware.php(81): Cake\Http\Runner->__invoke(Object(Zend\Diactoros\ServerRequest), Object(Zend\Diactoros\Response))
+#20 /Users/jameshuang1996/Desktop/github/CS183Team/CLEWebEdition/vendor/cakephp/cakephp/src/Http/Runner.php(65): Cake\Error\Middleware\ErrorHandlerMiddleware->__invoke(Object(Zend\Diactoros\ServerRequest), Object(Zend\Diactoros\Response), Object(Cake\Http\Runner))
+#21 /Users/jameshuang1996/Desktop/github/CS183Team/CLEWebEdition/vendor/cakephp/cakephp/src/Http/Runner.php(51): Cake\Http\Runner->__invoke(Object(Zend\Diactoros\ServerRequest), Object(Zend\Diactoros\Response))
+#22 /Users/jameshuang1996/Desktop/github/CS183Team/CLEWebEdition/vendor/cakephp/cakephp/src/Http/Server.php(90): Cake\Http\Runner->run(Object(Cake\Http\MiddlewareQueue), Object(Zend\Diactoros\ServerRequest), Object(Zend\Diactoros\Response))
+#23 /Users/jameshuang1996/Desktop/github/CS183Team/CLEWebEdition/webroot/index.php(37): Cake\Http\Server->run()
+#24 {main}
+
+
+2017-02-15 09:44:56 Error: [Cake\Database\Exception] Cannot describe course. It has 0 columns.
+Request URL: /course
+Stack Trace:
+#0 /Users/jameshuang1996/Desktop/github/CS183Team/CLEWebEdition/vendor/cakephp/cakephp/src/Database/Schema/CachedCollection.php(63): Cake\Database\Schema\Collection->describe('course', Array)
+#1 /Users/jameshuang1996/Desktop/github/CS183Team/CLEWebEdition/vendor/cakephp/cakephp/src/ORM/Table.php(440): Cake\Database\Schema\CachedCollection->describe('course')
+#2 /Users/jameshuang1996/Desktop/github/CS183Team/CLEWebEdition/vendor/cakephp/cakephp/src/ORM/Query.php(210): Cake\ORM\Table->schema()
+#3 /Users/jameshuang1996/Desktop/github/CS183Team/CLEWebEdition/vendor/cakephp/cakephp/src/ORM/Query.php(167): Cake\ORM\Query->addDefaultTypes(Object(App\Model\Table\CourseTable))
+#4 /Users/jameshuang1996/Desktop/github/CS183Team/CLEWebEdition/vendor/cakephp/cakephp/src/ORM/Table.php(1336): Cake\ORM\Query->__construct(Object(Cake\Database\Connection), Object(App\Model\Table\CourseTable))
+#5 /Users/jameshuang1996/Desktop/github/CS183Team/CLEWebEdition/vendor/cakephp/cakephp/src/ORM/Table.php(964): Cake\ORM\Table->query()
+#6 /Users/jameshuang1996/Desktop/github/CS183Team/CLEWebEdition/vendor/cakephp/cakephp/src/Controller/Component/PaginatorComponent.php(184): Cake\ORM\Table->find('all', Array)
+#7 /Users/jameshuang1996/Desktop/github/CS183Team/CLEWebEdition/vendor/cakephp/cakephp/src/Controller/Controller.php(713): Cake\Controller\Component\PaginatorComponent->paginate(Object(App\Model\Table\CourseTable), Array)
+#8 /Users/jameshuang1996/Desktop/github/CS183Team/CLEWebEdition/src/Controller/CourseController.php(21): Cake\Controller\Controller->paginate(Object(App\Model\Table\CourseTable))
+#9 [internal function]: App\Controller\CourseController->index()
+#10 /Users/jameshuang1996/Desktop/github/CS183Team/CLEWebEdition/vendor/cakephp/cakephp/src/Controller/Controller.php(435): call_user_func_array(Array, Array)
+#11 /Users/jameshuang1996/Desktop/github/CS183Team/CLEWebEdition/vendor/cakephp/cakephp/src/Http/ActionDispatcher.php(121): Cake\Controller\Controller->invokeAction()
+#12 /Users/jameshuang1996/Desktop/github/CS183Team/CLEWebEdition/vendor/cakephp/cakephp/src/Http/ActionDispatcher.php(95): Cake\Http\ActionDispatcher->_invoke(Object(App\Controller\CourseController))
+#13 /Users/jameshuang1996/Desktop/github/CS183Team/CLEWebEdition/vendor/cakephp/cakephp/src/Http/BaseApplication.php(83): Cake\Http\ActionDispatcher->dispatch(Object(Cake\Network\Request), Object(Cake\Network\Response))
+#14 /Users/jameshuang1996/Desktop/github/CS183Team/CLEWebEdition/vendor/cakephp/cakephp/src/Http/Runner.php(65): Cake\Http\BaseApplication->__invoke(Object(Zend\Diactoros\ServerRequest), Object(Zend\Diactoros\Response), Object(Cake\Http\Runner))
+#15 /Users/jameshuang1996/Desktop/github/CS183Team/CLEWebEdition/vendor/cakephp/cakephp/src/Routing/Middleware/RoutingMiddleware.php(62): Cake\Http\Runner->__invoke(Object(Zend\Diactoros\ServerRequest), Object(Zend\Diactoros\Response))
+#16 /Users/jameshuang1996/Desktop/github/CS183Team/CLEWebEdition/vendor/cakephp/cakephp/src/Http/Runner.php(65): Cake\Routing\Middleware\RoutingMiddleware->__invoke(Object(Zend\Diactoros\ServerRequest), Object(Zend\Diactoros\Response), Object(Cake\Http\Runner))
+#17 /Users/jameshuang1996/Desktop/github/CS183Team/CLEWebEdition/vendor/cakephp/cakephp/src/Routing/Middleware/AssetMiddleware.php(88): Cake\Http\Runner->__invoke(Object(Zend\Diactoros\ServerRequest), Object(Zend\Diactoros\Response))
+#18 /Users/jameshuang1996/Desktop/github/CS183Team/CLEWebEdition/vendor/cakephp/cakephp/src/Http/Runner.php(65): Cake\Routing\Middleware\AssetMiddleware->__invoke(Object(Zend\Diactoros\ServerRequest), Object(Zend\Diactoros\Response), Object(Cake\Http\Runner))
+#19 /Users/jameshuang1996/Desktop/github/CS183Team/CLEWebEdition/vendor/cakephp/cakephp/src/Error/Middleware/ErrorHandlerMiddleware.php(81): Cake\Http\Runner->__invoke(Object(Zend\Diactoros\ServerRequest), Object(Zend\Diactoros\Response))
+#20 /Users/jameshuang1996/Desktop/github/CS183Team/CLEWebEdition/vendor/cakephp/cakephp/src/Http/Runner.php(65): Cake\Error\Middleware\ErrorHandlerMiddleware->__invoke(Object(Zend\Diactoros\ServerRequest), Object(Zend\Diactoros\Response), Object(Cake\Http\Runner))
+#21 /Users/jameshuang1996/Desktop/github/CS183Team/CLEWebEdition/vendor/cakephp/cakephp/src/Http/Runner.php(51): Cake\Http\Runner->__invoke(Object(Zend\Diactoros\ServerRequest), Object(Zend\Diactoros\Response))
+#22 /Users/jameshuang1996/Desktop/github/CS183Team/CLEWebEdition/vendor/cakephp/cakephp/src/Http/Server.php(90): Cake\Http\Runner->run(Object(Cake\Http\MiddlewareQueue), Object(Zend\Diactoros\ServerRequest), Object(Zend\Diactoros\Response))
+#23 /Users/jameshuang1996/Desktop/github/CS183Team/CLEWebEdition/webroot/index.php(37): Cake\Http\Server->run()
+#24 {main}
+
+
+2017-02-15 10:16:22 Error: [Cake\Database\Exception] Cannot describe course_concurrents. It has 0 columns.
+Request URL: /course/view/12
+Referer URL: http://localhost:8765/course
+Stack Trace:
+#0 /Users/jameshuang1996/Desktop/github/CS183Team/CLEWebEdition/vendor/cakephp/cakephp/src/Database/Schema/CachedCollection.php(63): Cake\Database\Schema\Collection->describe('course_concurre...', Array)
+#1 /Users/jameshuang1996/Desktop/github/CS183Team/CLEWebEdition/vendor/cakephp/cakephp/src/ORM/Table.php(440): Cake\Database\Schema\CachedCollection->describe('course_concurre...')
+#2 /Users/jameshuang1996/Desktop/github/CS183Team/CLEWebEdition/vendor/cakephp/cakephp/src/ORM/Table.php(518): Cake\ORM\Table->schema()
+#3 /Users/jameshuang1996/Desktop/github/CS183Team/CLEWebEdition/vendor/cakephp/cakephp/src/ORM/Query.php(390): Cake\ORM\Table->primaryKey()
+#4 /Users/jameshuang1996/Desktop/github/CS183Team/CLEWebEdition/vendor/cakephp/cakephp/src/ORM/Query.php(367): Cake\ORM\Query->_addAssociationsToTypeMap(Object(App\Model\Table\CourseTable), Object(Cake\Database\TypeMap), Array)
+#5 /Users/jameshuang1996/Desktop/github/CS183Team/CLEWebEdition/vendor/cakephp/cakephp/src/ORM/Query.php(700): Cake\ORM\Query->contain(Array)
+#6 /Users/jameshuang1996/Desktop/github/CS183Team/CLEWebEdition/vendor/cakephp/cakephp/src/ORM/Table.php(1937): Cake\ORM\Query->applyOptions(Array)
+#7 /Users/jameshuang1996/Desktop/github/CS183Team/CLEWebEdition/vendor/cakephp/cakephp/src/ORM/Table.php(967): Cake\ORM\Table->callFinder('all', Object(Cake\ORM\Query), Array)
+#8 /Users/jameshuang1996/Desktop/github/CS183Team/CLEWebEdition/vendor/cakephp/cakephp/src/ORM/Table.php(1211): Cake\ORM\Table->find('all', Array)
+#9 /Users/jameshuang1996/Desktop/github/CS183Team/CLEWebEdition/src/Controller/CourseController.php(38): Cake\ORM\Table->get(Array, Array)
+#10 [internal function]: App\Controller\CourseController->view('12')
+#11 /Users/jameshuang1996/Desktop/github/CS183Team/CLEWebEdition/vendor/cakephp/cakephp/src/Controller/Controller.php(435): call_user_func_array(Array, Array)
+#12 /Users/jameshuang1996/Desktop/github/CS183Team/CLEWebEdition/vendor/cakephp/cakephp/src/Http/ActionDispatcher.php(121): Cake\Controller\Controller->invokeAction()
+#13 /Users/jameshuang1996/Desktop/github/CS183Team/CLEWebEdition/vendor/cakephp/cakephp/src/Http/ActionDispatcher.php(95): Cake\Http\ActionDispatcher->_invoke(Object(App\Controller\CourseController))
+#14 /Users/jameshuang1996/Desktop/github/CS183Team/CLEWebEdition/vendor/cakephp/cakephp/src/Http/BaseApplication.php(83): Cake\Http\ActionDispatcher->dispatch(Object(Cake\Network\Request), Object(Cake\Network\Response))
+#15 /Users/jameshuang1996/Desktop/github/CS183Team/CLEWebEdition/vendor/cakephp/cakephp/src/Http/Runner.php(65): Cake\Http\BaseApplication->__invoke(Object(Zend\Diactoros\ServerRequest), Object(Zend\Diactoros\Response), Object(Cake\Http\Runner))
+#16 /Users/jameshuang1996/Desktop/github/CS183Team/CLEWebEdition/vendor/cakephp/cakephp/src/Routing/Middleware/RoutingMiddleware.php(62): Cake\Http\Runner->__invoke(Object(Zend\Diactoros\ServerRequest), Object(Zend\Diactoros\Response))
+#17 /Users/jameshuang1996/Desktop/github/CS183Team/CLEWebEdition/vendor/cakephp/cakephp/src/Http/Runner.php(65): Cake\Routing\Middleware\RoutingMiddleware->__invoke(Object(Zend\Diactoros\ServerRequest), Object(Zend\Diactoros\Response), Object(Cake\Http\Runner))
+#18 /Users/jameshuang1996/Desktop/github/CS183Team/CLEWebEdition/vendor/cakephp/cakephp/src/Routing/Middleware/AssetMiddleware.php(88): Cake\Http\Runner->__invoke(Object(Zend\Diactoros\ServerRequest), Object(Zend\Diactoros\Response))
+#19 /Users/jameshuang1996/Desktop/github/CS183Team/CLEWebEdition/vendor/cakephp/cakephp/src/Http/Runner.php(65): Cake\Routing\Middleware\AssetMiddleware->__invoke(Object(Zend\Diactoros\ServerRequest), Object(Zend\Diactoros\Response), Object(Cake\Http\Runner))
+#20 /Users/jameshuang1996/Desktop/github/CS183Team/CLEWebEdition/vendor/cakephp/cakephp/src/Error/Middleware/ErrorHandlerMiddleware.php(81): Cake\Http\Runner->__invoke(Object(Zend\Diactoros\ServerRequest), Object(Zend\Diactoros\Response))
+#21 /Users/jameshuang1996/Desktop/github/CS183Team/CLEWebEdition/vendor/cakephp/cakephp/src/Http/Runner.php(65): Cake\Error\Middleware\ErrorHandlerMiddleware->__invoke(Object(Zend\Diactoros\ServerRequest), Object(Zend\Diactoros\Response), Object(Cake\Http\Runner))
+#22 /Users/jameshuang1996/Desktop/github/CS183Team/CLEWebEdition/vendor/cakephp/cakephp/src/Http/Runner.php(51): Cake\Http\Runner->__invoke(Object(Zend\Diactoros\ServerRequest), Object(Zend\Diactoros\Response))
+#23 /Users/jameshuang1996/Desktop/github/CS183Team/CLEWebEdition/vendor/cakephp/cakephp/src/Http/Server.php(90): Cake\Http\Runner->run(Object(Cake\Http\MiddlewareQueue), Object(Zend\Diactoros\ServerRequest), Object(Zend\Diactoros\Response))
+#24 /Users/jameshuang1996/Desktop/github/CS183Team/CLEWebEdition/webroot/index.php(37): Cake\Http\Server->run()
+#25 {main}
+
+
