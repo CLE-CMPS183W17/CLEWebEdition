@@ -1,4 +1,4 @@
-./bin
-./vendor
-./tmp
-./logs
+bin
+vendor
+tmp
+logs
