@@ -1,3 +1,8 @@
+<?php
+/**
+  * @var \App\View\AppView $this
+  */
+?>
 <nav class="large-3 medium-4 columns" id="actions-sidebar">
     <ul class="side-nav">
         <li class="heading"><?= __('Actions') ?></li>
@@ -13,6 +18,14 @@
         <tr>
             <th scope="row"><?= __('Name') ?></th>
             <td><?= h($course->name) ?></td>
+        </tr>
+        <tr>
+            <th scope="row"><?= __('Concurrents') ?></th>
+            <td><?= h($course->concurrents) ?></td>
+        </tr>
+        <tr>
+            <th scope="row"><?= __('Prerequisites') ?></th>
+            <td><?= h($course->prerequisites) ?></td>
         </tr>
         <tr>
             <th scope="row"><?= __('Id') ?></th>
