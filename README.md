@@ -23,3 +23,5 @@ Proceed to then configure the app.php file in the config folder, changing the fo
 
 Then, proceed to run from your bin folder: 
 - cake bake all course (Or, in the future, if there are more table files, cake bake all tablenamehere)
+
+Once successful, copy the src folder from this repo and replace it with the newly generated one.
