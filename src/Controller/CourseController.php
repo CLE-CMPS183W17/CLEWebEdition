@@ -34,7 +34,7 @@ class CourseController extends AppController
     public function view($id = null)
     {
         $course = $this->Course->get($id, [
-            'contain' => ['CourseConcurrents', 'CoursePrerequisites']
+            'contain' => []
         ]);
 
         $this->set('course', $course);
@@ -49,6 +49,7 @@ class CourseController extends AppController
     public function add()
     {
         $course = $this->Course->newEntity();
+        $this->set('coursenames', $this->Course->find('list'));
         if ($this->request->is('post')) {
             $course = $this->Course->patchEntity($course, $this->request->data);
             if ($this->Course->save($course)) {
@@ -74,6 +75,7 @@ class CourseController extends AppController
         $course = $this->Course->get($id, [
             'contain' => []
         ]);
+        $this->set('coursenames', $this->Course->find('list'));
         if ($this->request->is(['patch', 'post', 'put'])) {
             $course = $this->Course->patchEntity($course, $this->request->data);
             if ($this->Course->save($course)) {

@@ -9,9 +9,6 @@ use Cake\Validation\Validator;
 /**
  * Course Model
  *
- * @property \Cake\ORM\Association\HasMany $CourseConcurrents
- * @property \Cake\ORM\Association\HasMany $CoursePrerequisites
- *
  * @method \App\Model\Entity\Course get($primaryKey, $options = [])
  * @method \App\Model\Entity\Course newEntity($data = null, array $options = [])
  * @method \App\Model\Entity\Course[] newEntities(array $data, array $options = [])
@@ -36,13 +33,6 @@ class CourseTable extends Table
         $this->table('course');
         $this->displayField('name');
         $this->primaryKey('id');
-
-        $this->hasMany('CourseConcurrents', [
-            'foreignKey' => 'course_id'
-        ]);
-        $this->hasMany('CoursePrerequisites', [
-            'foreignKey' => 'course_id'
-        ]);
     }
 
     /**
@@ -82,6 +72,12 @@ class CourseTable extends Table
         $validator
             ->boolean('spring')
             ->allowEmpty('spring');
+
+        $validator
+            ->allowEmpty('concurrents');
+
+        $validator
+            ->allowEmpty('prerequisites');
 
         return $validator;
     }

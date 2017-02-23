@@ -1,3 +1,8 @@
+<?php
+/**
+  * @var \App\View\AppView $this
+  */
+?>
 <nav class="large-3 medium-4 columns" id="actions-sidebar">
     <ul class="side-nav">
         <li class="heading"><?= __('Actions') ?></li>
@@ -15,6 +20,8 @@
             echo $this->Form->input('fall');
             echo $this->Form->input('winter');
             echo $this->Form->input('spring');
+            echo $this->Form->input('concurrents', array('type'=>'select', 'options'=>$coursenames, 'multiple'=>true));
+            echo $this->Form->input('prerequisites', array('type'=>'select','options'=>$coursenames, 'multiple'=>true));
         ?>
     </fieldset>
     <?= $this->Form->button(__('Submit')) ?>
