@@ -1,3 +1,8 @@
+<?php
+/**
+  * @var \App\View\AppView $this
+  */
+?>
 <nav class="large-3 medium-4 columns" id="actions-sidebar">
     <ul class="side-nav">
         <li class="heading"><?= __('Actions') ?></li>
@@ -16,6 +21,8 @@
                 <th scope="col"><?= $this->Paginator->sort('fall') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('winter') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('spring') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('concurrents') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('prerequisites') ?></th>
                 <th scope="col" class="actions"><?= __('Actions') ?></th>
             </tr>
         </thead>
@@ -29,6 +36,8 @@
                 <td><?= h($course->fall) ?></td>
                 <td><?= h($course->winter) ?></td>
                 <td><?= h($course->spring) ?></td>
+                <td><?= h($course->concurrents) ?></td>
+                <td><?= h($course->prerequisites) ?></td>
                 <td class="actions">
                     <?= $this->Html->link(__('View'), ['action' => 'view', $course->id]) ?>
                     <?= $this->Html->link(__('Edit'), ['action' => 'edit', $course->id]) ?>

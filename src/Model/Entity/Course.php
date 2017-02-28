@@ -13,9 +13,8 @@ use Cake\ORM\Entity;
  * @property bool $fall
  * @property bool $winter
  * @property bool $spring
- *
- * @property \App\Model\Entity\CourseConcurrent[] $course_concurrents
- * @property \App\Model\Entity\CoursePrerequisite[] $course_prerequisites
+ * @property string $concurrents
+ * @property string $prerequisites
  */
 class Course extends Entity
 {
