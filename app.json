@@ -1,0 +1,6 @@
+{
+  "name": "CLEWebEdition",
+  "description": "A web application that gives the user an estimate on how long it would take to complete a set number of courses under ideal conditions.",
+  "repository": "https://github.com/JamesHuangUC/CLEWebEdition",
+  "keywords": ["ucsc", "cmps183"]
+}
