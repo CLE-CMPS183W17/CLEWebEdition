@@ -5,8 +5,6 @@ Project introduced for Winter 2017 CMPS 183 at UCSC. Scrum Board can be viewed [
 
 Inspired by [the Java version] (https://github.com/divark/college-length-estimator) of the College Length Estimator made by Tyler Schmidt.
 
-[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
-
 ## Technologies used:
 - Languages: HTML5, PHP, CSS (Managed by Bootstrap), JavaScript/jQuery
 - Web Framework: CakePHP
@@ -27,3 +25,7 @@ Then, proceed to run from your bin folder:
 - cake bake all course (Or, in the future, if there are more table files, cake bake all tablenamehere)
 
 Once successful, copy the src folder from this repo and replace it with the newly generated one.
+
+Alternatively, you can click the button below to deploy this app to Heroku.
+
+[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
