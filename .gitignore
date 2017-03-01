@@ -3,6 +3,7 @@
 /bin/*
 /vendor/*
 !/vendor/autoload.php
+!/vendor/composer/autoload_psr4.php
 /config/app.php
 
 /tmp/cache/models/*
