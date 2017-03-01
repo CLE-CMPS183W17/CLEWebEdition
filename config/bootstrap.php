@@ -196,7 +196,7 @@ Type::build('timestamp')
     ->useImmutable();
 
 Plugin::loadAll();
-Plugin::load('DebugKit', ['bootstrap' => true, 'routes' => true]);
+// Plugin::load('DebugKit', ['bootstrap' => true, 'routes' => true]);
 /*
  * Custom Inflector rules, can be set to correctly pluralize or singularize
  * table, model, controller names or whatever other string is passed to the
