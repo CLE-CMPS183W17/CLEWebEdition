@@ -33,6 +33,24 @@ class CourseTable extends Table
         $this->table('course');
         $this->displayField('name');
         $this->primaryKey('id');
+	$this->belongsToMany('Prerequisites', [
+		'className' => 'Course',
+		'through' => 'course_prerequisites',
+		'foreignKey' => 'from_id',
+		'targetForeignKey' => 'to_id'
+	]);
+	$this->belongsToMany('Concurrents', [
+		'className' => 'Course',
+		'through' => 'course_concurrents',
+		'foreignKey' => 'from_id',
+		'targetForeignKey' => 'to_id'
+	]);
+	$this->belongsToMany('Dependents', [
+		'className' => 'Course',
+		'through' => 'course_prerequisites',
+		'foreignKey' => 'to_id',
+		'targetForeignKey' => 'from_id'
+	]);
     }
 
     /**
