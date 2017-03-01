@@ -64,7 +64,7 @@ return [
      *   You should treat it as extremely sensitive data.
      */
     'Security' => [
-        'salt' => env('SECURITY_SALT', '209c09f2dc560d25afe3d61f50c2625e99c5ccdc7a1224fa270f539becbde192'),
+        'salt' => env('SECURITY_SALT', '__SALT__'),
     ],
 
     /**
@@ -222,16 +222,19 @@ return [
             'className' => 'Cake\Database\Connection',
             'driver' => 'Cake\Database\Driver\Postgres',
             'persistent' => false,
-            'host' => 'ec2-107-20-141-145.compute-1.amazonaws.com',
+            'host' => getenv('DB_HOST'),
+          
             /**
              * CakePHP will use the default DB port based on the driver selected
              * MySQL on MAMP uses port 8889, MAMP users will want to uncomment
              * the following line and set the port accordingly
              */
-            'port' => '5432',
-            'username' => 'dxucgijykcoqlp',
-            'password' => 'b6ce058fe12f03cc8d635b0ae954064677f50ffd0623388bf979dce13a4412f3',
-            'database' => 'd1n1h2sjlj94aj',
+          
+            //'port' => 'non_standard_port_number',
+            'username' => getenv('DB_USER'),
+            'password' => getenv('DB_PASS'),
+            'database' => getenv('DB_NAME'),
+
             'encoding' => 'utf8',
             'timezone' => 'UTC',
             'flags' => [],
@@ -265,7 +268,7 @@ return [
          */
         'test' => [
             'className' => 'Cake\Database\Connection',
-            'driver' => 'Cake\Database\Driver\Postgres',
+            'driver' => 'Cake\Database\Driver\Mysql',
             'persistent' => false,
             'host' => 'localhost',
             //'port' => 'non_standard_port_number',
@@ -343,4 +346,28 @@ return [
     'Session' => [
         'defaults' => 'php',
     ],
+
+    /**
+ * The debug_kit connection stores DebugKit meta-data.
+ */
+'debug_kit' => [
+    'className' => 'Cake\Database\Connection',
+    'driver' => 'Cake\Database\Driver\Postgres',
+    'persistent' => false,
+    'host' => getenv('DB_HOST'),
+    /**
+     * CakePHP will use the default DB port based on the driver selected
+     * MySQL on MAMP uses port 8889, MAMP users will want to uncomment
+     * the following line and set the port accordingly
+     */
+    //'port' => 'non_standard_port_number',
+    'username' => getenv('DB_USER'),
+    'password' => getenv('DB_PASS'),
+    'database' => getenv('DB_NAME'),
+    'encoding' => 'utf8',
+    'timezone' => 'UTC',
+    'cacheMetadata' => true,
+    'quoteIdentifiers' => false,
+    //'init' => ['SET GLOBAL innodb_stats_on_metadata = 0'],
+],
 ];
