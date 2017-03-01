@@ -195,6 +195,7 @@ Type::build('datetime')
 Type::build('timestamp')
     ->useImmutable();
 
+Plugin::loadAll();
 /*
  * Custom Inflector rules, can be set to correctly pluralize or singularize
  * table, model, controller names or whatever other string is passed to the
@@ -214,7 +215,6 @@ Type::build('timestamp')
  * Plugin::load('Migrations'); //Loads a single plugin named Migrations
  *
  */
-Plugin::loadAll(); // Loads all plugins at once
 Plugin::load('Migrations'); //Loads a single plugin named Migrations
 
 /*
