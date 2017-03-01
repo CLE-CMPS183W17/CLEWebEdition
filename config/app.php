@@ -64,7 +64,7 @@ return [
      *   You should treat it as extremely sensitive data.
      */
     'Security' => [
-        'salt' => env('SECURITY_SALT', 'sfjowefwijfeoiwjefovxqelkdsc'),
+        'salt' => env('SECURITY_SALT', '__SALT__'),
     ],
 
     /**
@@ -222,16 +222,16 @@ return [
             'className' => 'Cake\Database\Connection',
             'driver' => 'Cake\Database\Driver\Postgres',
             'persistent' => false,
-            'host' => 'ec2-54-204-1-40.compute-1.amazonaws.com',
+            'host' => getenv('DB_HOST'),
             /**
              * CakePHP will use the default DB port based on the driver selected
              * MySQL on MAMP uses port 8889, MAMP users will want to uncomment
              * the following line and set the port accordingly
              */
             //'port' => 'non_standard_port_number',
-            'username' => 'fhzzfoemyssijr',
-            'password' => 'c3f86b3b27ec3c7f032772e311d7c03bd03bb73efd9aa3ab83723b25ecd050ab',
-            'database' => 'd348c2o1bdqmva',
+            'username' => getenv('DB_USER'),
+            'password' => getenv('DB_PASS'),
+            'database' => getenv('DB_NAME'),
             'encoding' => 'utf8',
             'timezone' => 'UTC',
             'flags' => [],
@@ -344,7 +344,27 @@ return [
         'defaults' => 'php',
     ],
 
-        /**
-     * The debug_kit connection stores DebugKit meta-data.
+    /**
+ * The debug_kit connection stores DebugKit meta-data.
+ */
+'debug_kit' => [
+    'className' => 'Cake\Database\Connection',
+    'driver' => 'Cake\Database\Driver\Postgres',
+    'persistent' => false,
+    'host' => getenv('DB_HOST'),
+    /**
+     * CakePHP will use the default DB port based on the driver selected
+     * MySQL on MAMP uses port 8889, MAMP users will want to uncomment
+     * the following line and set the port accordingly
      */
+    //'port' => 'non_standard_port_number',
+    'username' => getenv('DB_USER'),
+    'password' => getenv('DB_PASS'),
+    'database' => getenv('DB_NAME'),
+    'encoding' => 'utf8',
+    'timezone' => 'UTC',
+    'cacheMetadata' => true,
+    'quoteIdentifiers' => false,
+    //'init' => ['SET GLOBAL innodb_stats_on_metadata = 0'],
+],
 ];
