@@ -2,7 +2,7 @@
 
 /bin/*
 /vendor/*
-/vendor/autoload.php
+!/vendor/autoload.php
 /config/app.php
 
 /tmp/cache/models/*
