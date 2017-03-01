@@ -1,11 +1,9 @@
 <?php
 namespace App\Model\Table;
-
 use Cake\ORM\Query;
 use Cake\ORM\RulesChecker;
 use Cake\ORM\Table;
 use Cake\Validation\Validator;
-
 /**
  * Course Model
  *
@@ -19,7 +17,6 @@ use Cake\Validation\Validator;
  */
 class CourseTable extends Table
 {
-
     /**
      * Initialize method
      *
@@ -29,12 +26,28 @@ class CourseTable extends Table
     public function initialize(array $config)
     {
         parent::initialize($config);
-
         $this->table('course');
         $this->displayField('name');
         $this->primaryKey('id');
+    $this->belongsToMany('Prerequisites', [
+        'className' => 'Course',
+        'through' => 'course_prerequisites',
+        'foreignKey' => 'from_id',
+        'targetForeignKey' => 'to_id'
+    ]);
+    $this->belongsToMany('Concurrents', [
+        'className' => 'Course',
+        'through' => 'course_concurrents',
+        'foreignKey' => 'from_id',
+        'targetForeignKey' => 'to_id'
+    ]);
+    $this->belongsToMany('Dependents', [
+        'className' => 'Course',
+        'through' => 'course_prerequisites',
+        'foreignKey' => 'to_id',
+        'targetForeignKey' => 'from_id'
+    ]);
     }
-
     /**
      * Default validation rules.
      *
@@ -46,42 +59,32 @@ class CourseTable extends Table
         $validator
             ->integer('id')
             ->allowEmpty('id', 'create');
-
         $validator
             ->requirePresence('name', 'create')
             ->notEmpty('name')
             ->add('name', 'unique', ['rule' => 'validateUnique', 'provider' => 'table']);
-
         $validator
             ->integer('units')
             ->requirePresence('units', 'create')
             ->notEmpty('units');
-
         $validator
             ->boolean('summer')
             ->allowEmpty('summer');
-
         $validator
             ->boolean('fall')
             ->allowEmpty('fall');
-
         $validator
             ->boolean('winter')
             ->allowEmpty('winter');
-
         $validator
             ->boolean('spring')
             ->allowEmpty('spring');
-
         $validator
             ->allowEmpty('concurrents');
-
         $validator
             ->allowEmpty('prerequisites');
-
         return $validator;
     }
-
     /**
      * Returns a rules checker object that will be used for validating
      * application integrity.
@@ -92,7 +95,6 @@ class CourseTable extends Table
     public function buildRules(RulesChecker $rules)
     {
         $rules->add($rules->isUnique(['name']));
-
         return $rules;
     }
 }
