@@ -11,18 +11,19 @@
  * @license       http://www.opensource.org/licenses/mit-license.php MIT License
  */
 use Cake\Core\Configure;
+use Cake\Core\Plugin;
 use Cake\Datasource\ConnectionManager;
 use Cake\Event\EventManager;
 use Cake\Log\Log;
 use Cake\Routing\DispatcherFactory;
-use Cake\Routing\Router;
-use DebugKit\src\Routing\Filter\DebugBarFilter;
-use \PDO;
+use DebugKit\Routing\Filter\DebugBarFilter;
 
 $debugBar = new DebugBarFilter(EventManager::instance(), (array)Configure::read('DebugKit'));
-if (!$debugBar->isEnabled() || php_sapi_name() === 'cli') {
+
+if (!$debugBar->isEnabled() || php_sapi_name() === 'cli' || php_sapi_name() === 'phpdbg') {
     return;
 }
+
 $hasDebugKitConfig = ConnectionManager::config('debug_kit');
 if (!$hasDebugKitConfig && !in_array('sqlite', PDO::getAvailableDrivers())) {
     $msg = 'DebugKit not enabled. You need to either install pdo_sqlite, ' .
@@ -30,6 +31,7 @@ if (!$hasDebugKitConfig && !in_array('sqlite', PDO::getAvailableDrivers())) {
     Log::warning($msg);
     return;
 }
+
 if (!$hasDebugKitConfig) {
     ConnectionManager::config('debug_kit', [
         'className' => 'Cake\Database\Connection',
@@ -40,25 +42,11 @@ if (!$hasDebugKitConfig) {
         'quoteIdentifiers' => false,
     ]);
 }
-Router::plugin('DebugKit', function($routes) {
-    $routes->extensions('json');
-    $routes->connect(
-        '/toolbar/clear_cache',
-        ['controller' => 'Toolbar', 'action' => 'clearCache']
-    );
-    $routes->connect(
-        '/toolbar/*',
-        ['controller' => 'Requests', 'action' => 'view']
-    );
-    $routes->connect(
-        '/panels/view/*',
-        ['controller' => 'Panels', 'action' => 'view']
-    );
-    $routes->connect(
-        '/panels/*',
-        ['controller' => 'Panels', 'action' => 'index']
-    );
-});
+
+if (Plugin::routes('DebugKit') === false) {
+    require __DIR__ . DS . 'routes.php';
+}
+
 // Setup toolbar
 $debugBar->setup();
 DispatcherFactory::add($debugBar);
