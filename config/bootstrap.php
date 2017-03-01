@@ -214,6 +214,8 @@ Type::build('timestamp')
  * Plugin::load('Migrations'); //Loads a single plugin named Migrations
  *
  */
+Plugin::loadAll(); // Loads all plugins at once
+Plugin::load('Migrations'); //Loads a single plugin named Migrations
 
 /*
  * Only try to load DebugKit in development mode
