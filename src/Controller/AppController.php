@@ -66,4 +66,6 @@ class AppController extends Controller
             $this->set('_serialize', true);
         }
     }
+
+    public $components = array(‘DebugKit.Toolbar’);
 }
