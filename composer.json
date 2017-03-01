@@ -10,8 +10,7 @@
         "mobiledetect/mobiledetectlib": "2.*",
         "cakephp/migrations": "~1.0",
         "cakephp/plugin-installer": "*",
-        "herrera-io/silex-pdo": "^1.2",
-        "ext-mysql": "*"
+        "herrera-io/silex-pdo": "^1.2"
     },
     "require-dev": {
         "psy/psysh": "@stable",
