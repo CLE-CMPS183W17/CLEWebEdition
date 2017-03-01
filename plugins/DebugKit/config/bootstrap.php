@@ -16,7 +16,7 @@ use Cake\Datasource\ConnectionManager;
 use Cake\Event\EventManager;
 use Cake\Log\Log;
 use Cake\Routing\DispatcherFactory;
-use Cake\Routing\DebugBarFilter;
+use DebugKit\Routing\Filter\DebugBarFilter;
 
 $debugBar = new DebugBarFilter(EventManager::instance(), (array)Configure::read('DebugKit'));
 
