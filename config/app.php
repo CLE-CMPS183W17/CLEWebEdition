@@ -343,4 +343,23 @@ return [
     'Session' => [
         'defaults' => 'php',
     ],
+
+        /**
+     * The debug_kit connection stores DebugKit meta-data.
+     */
+    'debug_kit' => [
+        'className' => 'Cake\Database\Connection',
+        'driver' => 'Cake\Database\Driver\Mysql',
+        'persistent' => false,
+        'host' => 'us-cdbr-iron-east-04.cleardb.net',
+        //'port' => 'nonstandard_port_number',
+        'username' => 'b948d74376dac3:844e7a21',    // Your DB username here
+        'password' => 'heroku_3ceb5df6f0280bf',    // Your DB password here
+        'database' => 'heroku_3ceb5df6f0280bf',
+        'encoding' => 'utf8',
+        'timezone' => 'UTC',
+        'cacheMetadata' => true,
+        'quoteIdentifiers' => false,
+        //'init' => ['SET GLOBAL innodb_stats_on_metadata = 0'],
+    ],
 ];
