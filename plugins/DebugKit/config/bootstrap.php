@@ -18,6 +18,7 @@ use Cake\Routing\DispatcherFactory;
 use Cake\Routing\Router;
 use DebugKit\Routing\Filter\DebugBarFilter;
 use \PDO;
+
 $debugBar = new DebugBarFilter(EventManager::instance(), (array)Configure::read('DebugKit'));
 if (!$debugBar->isEnabled() || php_sapi_name() === 'cli') {
     return;
