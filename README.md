@@ -32,10 +32,10 @@ Click the button below to deploy on your Heroku account, then pull it to your lo
 
 **Note:** If you have access to this Heroku app, then follow the steps below:
 
-1. Clone this app to your local machine:
+1. Clone this app to your local machine: <br>
 `$ heroku git:clone -a myremoteapp`
 
-2. Adding Heroku's remote:
+2. Adding Heroku's remote: <br>
 `$ git remote add heroku https://git.heroku.com/myremoteapp.git `
 
 3. Pull the database from Heroku to a new database into your local machine: <br>
