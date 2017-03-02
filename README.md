@@ -26,6 +26,21 @@ Then, proceed to run from your bin folder:
 
 Once successful, copy the src folder from this repo and replace it with the newly generated one.
 
-Alternatively, you can click the button below to deploy this app on Heroku.
-
+### Deploy this app on Heroku
+Click the button below to deploy on your Heroku account, then pull it to your local machine from Heroku: <br> 
 [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
+
+**Note:** If you have access to this Heroku app, then follow steps below:
+
+1. Pull the database from Heroku to a new database in your local machine: <br>
+`$ heroku pg:pull DATABASE_URL mylocaldb -- app myremoteapp` <br>
+
+2. If you want to test it in your local machine, then edit the lines below in `root/config/app.php` to configure your local database: <br>
+`'host' => getenv('DB_HOST')` <br>
+`'username' => getenv('DB_USER')` <br>
+`'password' => getenv('DB_PASS')` <br>
+`'database' => getenv('DB_NAME')` <br>
+
+3. Push to Heroku database: <br>
+`$ pg:reset` <br>
+`$ heroku pg:push mylocaldb DATABASE_URL --app myremoteapp` <br>
