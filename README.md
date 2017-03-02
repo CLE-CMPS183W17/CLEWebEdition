@@ -30,16 +30,17 @@ Once successful, copy the src folder from this repo and replace it with the newl
 Click the button below to deploy on your Heroku account, then pull it to your local machine from Heroku: <br> 
 [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
 
-**Note:** If you have access to this Heroku app, then follow steps below:
+**Note:** If you have access to this Heroku app, then follow the steps below:
 
-1. Pull the database from Heroku to a new database in your local machine: <br>
+1. Pull the database from Heroku to a new database into your local machine: <br>
 `$ heroku pg:pull DATABASE_URL mylocaldb -- app myremoteapp` <br>
 
-2. If you want to test it in your local machine, then edit the lines below in `root/config/app.php` to configure your local database: <br>
+2. If you want to test it in your local machine, then edit the lines below in `root/config/app.php` to configure your local database (make sure your have the permission to this database), then re-bake the app: <br>
 `'host' => getenv('DB_HOST')` <br>
 `'username' => getenv('DB_USER')` <br>
 `'password' => getenv('DB_PASS')` <br>
 `'database' => getenv('DB_NAME')` <br>
+`$ bin/cake bake all` <br>
 
 3. Push to Heroku database: <br>
 `$ pg:reset` <br>
