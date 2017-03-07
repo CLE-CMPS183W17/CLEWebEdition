@@ -75,7 +75,7 @@ class CourseController extends AppController
         $course = $this->Course->get($id, [
             'contain' => []
         ]);
-        $this->set('coursenames', $this->Course->find('list'));
+        $this->set('coursenames', $this->Course->find('list')->contains(['Prerequisites', 'Concurrents', 'Dependents']));
         if ($this->request->is(['patch', 'post', 'put'])) {
             $course = $this->Course->patchEntity($course, $this->request->data);
             if ($this->Course->save($course)) {
