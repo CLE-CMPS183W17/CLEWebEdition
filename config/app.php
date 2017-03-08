@@ -231,7 +231,7 @@ return [
              */
           
             //'port' => 'non_standard_port_number',
-            'username' => getenv('DB_USER'),
+            'username' => getenv('DB_USE'),
             'password' => getenv('DB_PASS'),
             'database' => getenv('DB_NAME'),
 
