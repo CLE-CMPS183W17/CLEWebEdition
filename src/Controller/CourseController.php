@@ -53,7 +53,7 @@ class CourseController extends AppController
         if ($this->request->is('post')) {
             //var_dump($this->request->data);die();
             $course = $this->Course->patchEntity($course, $this->request->data);
-            if($course->units >= 0) {
+            if($course->units > 0) {
                 if ($result=$this->Course->save($course)) {
                     $this->Flash->success(__('The course has been saved.'));
                     $this->Course->saveConcurrents($result->id, $this->request->data["concurrents"]);
@@ -61,7 +61,7 @@ class CourseController extends AppController
                     return $this->redirect(['action' => 'index']);
                  }
             } else {
-                $this->Flash->error(__('The units can not be negative.'));
+                $this->Flash->error(__('The units must be greater than 0.'));
             }
             $this->Flash->error(__('The course could not be saved. Please, try again.'));
         }
@@ -94,7 +94,7 @@ class CourseController extends AppController
         $this->set('courseconcurrents', $courseconcurrents);
         if ($this->request->is(['patch', 'post', 'put'])) {
             $course = $this->Course->patchEntity($course, $this->request->data);
-            if($course->units >= 0) {
+            if($course->units > 0) {
                  if ($this->Course->save($course)) {
                     $this->Course->deleteAssociations($id);
                     $courseconcurrents = $this->request->data["concurrents"];
@@ -106,7 +106,7 @@ class CourseController extends AppController
                     return $this->redirect(['action' => 'index']);
                 }
             } else {
-                $this->Flash->error(__('The units can not be negative.'));
+                $this->Flash->error(__('The units must be greater than 0.'));
             }
             $this->Flash->error(__('The course could not be saved. Please, try again.'));
         }
