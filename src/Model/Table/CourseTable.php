@@ -1,12 +1,10 @@
 <?php
 namespace App\Model\Table;
-
 use Cake\ORM\Query;
 use Cake\ORM\RulesChecker;
 use Cake\ORM\Table;
 use Cake\Validation\Validator;
 use Cake\ORM\TableRegistry;
-
 /**
  * Course Model
  *
@@ -20,7 +18,6 @@ use Cake\ORM\TableRegistry;
  */
 class CourseTable extends Table
 {
-
     /**
      * Initialize method
      *
@@ -30,12 +27,28 @@ class CourseTable extends Table
     public function initialize(array $config)
     {
         parent::initialize($config);
-
         $this->table('course');
         $this->displayField('name');
         $this->primaryKey('id');
+    $this->belongsToMany('Prerequisites', [
+        'className' => 'Course',
+        'through' => 'course_prerequisites',
+        'foreignKey' => 'from_id',
+        'targetForeignKey' => 'to_id'
+    ]);
+    $this->belongsToMany('Concurrents', [
+        'className' => 'Course',
+        'through' => 'course_concurrents',
+        'foreignKey' => 'from_id',
+        'targetForeignKey' => 'to_id'
+    ]);
+    $this->belongsToMany('Dependents', [
+        'className' => 'Course',
+        'through' => 'course_prerequisites',
+        'foreignKey' => 'to_id',
+        'targetForeignKey' => 'from_id'
+    ]);
     }
-
     /**
      * Default validation rules.
      *
@@ -47,86 +60,69 @@ class CourseTable extends Table
         $validator
             ->integer('id')
             ->allowEmpty('id', 'create');
-
         $validator
             ->requirePresence('name', 'create')
             ->notEmpty('name')
             ->add('name', 'unique', ['rule' => 'validateUnique', 'provider' => 'table']);
-
         $validator
             ->decimal('units')
             ->requirePresence('units', 'create')
             ->notEmpty('units');
-
         $validator
             ->boolean('summer')
             ->allowEmpty('summer');
-
         $validator
             ->boolean('fall')
             ->allowEmpty('fall');
-
         $validator
             ->boolean('winter')
             ->allowEmpty('winter');
-
         $validator
             ->boolean('spring')
             ->allowEmpty('spring');
-
         return $validator;
     }
-
     public function saveConcurrents($id, $concurs) {
         if(!is_array($concurs)) {
             return;
         }
         $concurrents = TableRegistry::get('CourseConcurrents');
-
         //var_dump($concurs);die();
         foreach ($concurs as $concur) {
             $query = $concurrents->query();
             $query->insert(['from_id', 'to_id'])->values(['from_id' => $id, 'to_id'=>(int)$concur])->execute();
         }
     }
-
     public function savePrerequisites($id, $prereqs) {
         if(!is_array($prereqs)) {
             return;
         }
         $prerequisites = TableRegistry::get('CoursePrerequisites');
-
         foreach ($prereqs as $prereq) {
             $query = $prerequisites->query();
             $query->insert(['from_id', 'to_id'])->values(['from_id' => $id, 'to_id'=>(int)$prereq])->execute();
         }
     }
-
     public function deleteAssociations($id) {
         $concurrents = TableRegistry::get('CourseConcurrents');
         $prerequisites = TableRegistry::get('CoursePrerequisites');
-
         $queryC = $concurrents->query();
         $queryC->delete()
             ->where(['from_id'=>$id])
             ->execute();
-
         $queryC = $concurrents->query();
         $queryC->delete()
             ->where(['to_id'=>$id])
             ->execute();
-
         $queryP = $prerequisites->query();
         $queryP->delete()
             ->where(['from_id'=>$id])
             ->execute();
-
         $queryP = $prerequisites->query();
         $queryP->delete()
             ->where(['to_id'=>$id])
             ->execute();
     }
-
     /**
      * Returns a rules checker object that will be used for validating
      * application integrity.
@@ -137,7 +133,6 @@ class CourseTable extends Table
     public function buildRules(RulesChecker $rules)
     {
         $rules->add($rules->isUnique(['name']));
-
         return $rules;
     }
 }
