@@ -231,9 +231,9 @@ return [
              */
           
             //'port' => 'non_standard_port_number',
-            'username' => getenv('DB_USER'),
-            'password' => getenv('DB_PASS'),
-            'database' => getenv('DB_NAME'),
+            // 'username' => getenv('DB_USER'),
+            // 'password' => getenv('DB_PASS'),
+            // 'database' => getenv('DB_NAME'),
 
             'encoding' => 'utf8',
             'timezone' => 'UTC',
