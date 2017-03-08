@@ -34,7 +34,7 @@ class CourseController extends AppController
     public function view($id = null)
     {
         $course = $this->Course->get($id, [
-            'contain' => []
+            'contain' => ['Concurrents', 'Prerequisites']
         ]);
 
         $this->set('course', $course);
