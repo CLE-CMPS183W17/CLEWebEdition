@@ -20,14 +20,15 @@
     <fieldset>
         <legend><?= __('Edit Course') ?></legend>
         <?php
+            //var_dump($course['concurrents']);die();
             echo $this->Form->input('name');
             echo $this->Form->input('units');
             echo $this->Form->input('summer');
             echo $this->Form->input('fall');
             echo $this->Form->input('winter');
             echo $this->Form->input('spring');
-            echo $this->Form->input('concurrents', array('type'=>'select', 'options'=>$coursenames, 'multiple'=>true));
-            echo $this->Form->input('prerequisites', array('type'=>'select','options'=>$coursenames, 'multiple'=>true));
+            echo $this->Form->input('concurrents', array('type'=>'select', 'options'=>$coursenames, 'multiple'=>true, 'val'=>$courseconcurrents));
+            echo $this->Form->input('prerequisites', array('type'=>'select','options'=>$coursenames, 'multiple'=>true, 'val'=>$courseprerequisites));
         ?>
     </fieldset>
     <?= $this->Form->button(__('Submit')) ?>

@@ -2,6 +2,7 @@
 /**
   * @var \App\View\AppView $this
   */
+  //var_dump($course); die()
 ?>
 <nav class="large-3 medium-4 columns" id="actions-sidebar">
     <ul class="side-nav">
@@ -14,13 +15,9 @@
     <table cellpadding="0" cellspacing="0">
         <thead>
             <tr>
-                <th scope="col"><?= $this->Paginator->sort('id') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('name') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('units') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('summer') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('fall') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('winter') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('spring') ?></th>
+                <th scope="col">Terms</th>
                 <th scope="col"><?= $this->Paginator->sort('concurrents') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('prerequisites') ?></th>
                 <th scope="col" class="actions"><?= __('Actions') ?></th>
@@ -29,15 +26,11 @@
         <tbody>
             <?php foreach ($course as $course): ?>
             <tr>
-                <td><?= $this->Number->format($course->id) ?></td>
                 <td><?= h($course->name) ?></td>
                 <td><?= $this->Number->format($course->units) ?></td>
-                <td><?= h($course->summer) ?></td>
-                <td><?= h($course->fall) ?></td>
-                <td><?= h($course->winter) ?></td>
-                <td><?= h($course->spring) ?></td>
-                <td><?= h($course->concurrents) ?></td>
-                <td><?= h($course->prerequisites) ?></td>
+                <td><?= ($course->summer ? 'Su' : '') ?> <?= ($course->fall ? 'F' : '') ?> <?= ($course->winter ? 'W' : '') ?> <?= ($course->spring ? 'S' : '') ?></td>
+                <td><?= h($course->concurrentNames()) ?></td>
+                <td><?= h($course->prerequisiteNames()) ?></td>
                 <td class="actions">
                     <?= $this->Html->link(__('View'), ['action' => 'view', $course->id]) ?>
                     <?= $this->Html->link(__('Edit'), ['action' => 'edit', $course->id]) ?>
