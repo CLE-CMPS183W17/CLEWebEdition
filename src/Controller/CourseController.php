@@ -53,12 +53,15 @@ class CourseController extends AppController
         if ($this->request->is('post')) {
             //var_dump($this->request->data);die();
             $course = $this->Course->patchEntity($course, $this->request->data);
-            if ($result=$this->Course->save($course)) {
-                $this->Flash->success(__('The course has been saved.'));
-                $this->Course->saveConcurrents($result->id, $this->request->data["concurrents"]);
-                $this->Course->savePrerequisites($result->id, $this->request->data["prerequisites"]);
-
-                return $this->redirect(['action' => 'index']);
+            if($course->units >= 0) {
+                if ($result=$this->Course->save($course)) {
+                    $this->Flash->success(__('The course has been saved.'));
+                    $this->Course->saveConcurrents($result->id, $this->request->data["concurrents"]);
+                    $this->Course->savePrerequisites($result->id, $this->request->data["prerequisites"]);
+                    return $this->redirect(['action' => 'index']);
+                 }
+            } else {
+                $this->Flash->error(__('The units can not be negative.'));
             }
             $this->Flash->error(__('The course could not be saved. Please, try again.'));
         }
@@ -91,15 +94,19 @@ class CourseController extends AppController
         $this->set('courseconcurrents', $courseconcurrents);
         if ($this->request->is(['patch', 'post', 'put'])) {
             $course = $this->Course->patchEntity($course, $this->request->data);
-            if ($this->Course->save($course)) {
-                $this->Course->deleteAssociations($id);
-                $courseconcurrents = $this->request->data["concurrents"];
-                $courseprerequisites = $this->request->data["prerequisites"];
-                if (is_array($courseconcurrents)) $this->Course->saveConcurrents($id, $courseconcurrents);
-                if (is_array($courseprerequisites)) $this->Course->savePrerequisites($id, $courseprerequisites);
-                $this->Flash->success(__('The course has been saved.'));
+            if($course->units >= 0) {
+                 if ($this->Course->save($course)) {
+                    $this->Course->deleteAssociations($id);
+                    $courseconcurrents = $this->request->data["concurrents"];
+                    $courseprerequisites = $this->request->data["prerequisites"];
+                    if (is_array($courseconcurrents)) $this->Course->saveConcurrents($id, $courseconcurrents);
+                    if (is_array($courseprerequisites)) $this->Course->savePrerequisites($id, $courseprerequisites);
+                        $this->Flash->success(__('The course has been saved.'));
 
-                return $this->redirect(['action' => 'index']);
+                    return $this->redirect(['action' => 'index']);
+                }
+            } else {
+                $this->Flash->error(__('The units can not be negative.'));
             }
             $this->Flash->error(__('The course could not be saved. Please, try again.'));
         }
