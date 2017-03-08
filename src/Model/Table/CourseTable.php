@@ -72,7 +72,7 @@ class CourseTable extends Table
             ->add('name', 'unique', ['rule' => 'validateUnique', 'provider' => 'table']);
 
         $validator
-            ->integer('units')
+            ->decimal('units')
             ->requirePresence('units', 'create')
             ->notEmpty('units');
 
@@ -95,7 +95,10 @@ class CourseTable extends Table
         return $validator;
     }
 
-    public function saveConcurrents($id, array $concurs) {
+    public function saveConcurrents($id, $concurs) {
+        if(!is_array($concurs)) {
+            return;
+        }
         $concurrents = TableRegistry::get('CourseConcurrents');
 
         //var_dump($concurs);die();
@@ -105,7 +108,10 @@ class CourseTable extends Table
         }
     }
 
-    public function savePrerequisites($id, array $prereqs) {
+    public function savePrerequisites($id, $prereqs) {
+        if(!is_array($prereqs)) {
+            return;
+        }
         $prerequisites = TableRegistry::get('CoursePrerequisites');
 
         foreach ($prereqs as $prereq) {

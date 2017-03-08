@@ -31,7 +31,7 @@ class Course extends Entity
     protected $_accessible = [
         '*' => true,
         'id' => false
-    ];    
+    ];
     public function concurrentNames() {
         $out = [];
         foreach ($this['concurrents'] as $concur) {
