@@ -233,7 +233,7 @@ return [
             //'port' => 'non_standard_port_number',
             //'username' => getenv('DB_USER'),
             //'password' => getenv('DB_PASS'),
-            'database' => getenv('DB_NAME'),
+            //'database' => getenv('DB_NAME'),
 
             'encoding' => 'utf8',
             'timezone' => 'UTC',
@@ -260,7 +260,7 @@ return [
              */
             //'init' => ['SET GLOBAL innodb_stats_on_metadata = 0'],
 
-            'url' => env('DATABASE_URL', null),
+            //'url' => env('DATABASE_URL', null),
         ],
 
         /**
