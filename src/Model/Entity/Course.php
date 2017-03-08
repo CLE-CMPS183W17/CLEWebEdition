@@ -31,5 +31,20 @@ class Course extends Entity
     protected $_accessible = [
         '*' => true,
         'id' => false
-    ];
+    ];    
+    public function concurrentNames() {
+        $out = [];
+        foreach ($this['concurrents'] as $concur) {
+            array_push($out, $concur['name']);
+        }
+        return implode($out, ', ');
+    }
+
+    public function prerequisiteNames() {
+        $out = [];
+        foreach ($this['prerequisites'] as $prereq) {
+            array_push($out, $prereq['name']);
+        }
+        return implode($out, ', ');
+    }
 }

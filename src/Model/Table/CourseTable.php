@@ -5,6 +5,7 @@ use Cake\ORM\Query;
 use Cake\ORM\RulesChecker;
 use Cake\ORM\Table;
 use Cake\Validation\Validator;
+use Cake\ORM\TableRegistry;
 
 /**
  * Course Model
@@ -91,13 +92,51 @@ class CourseTable extends Table
             ->boolean('spring')
             ->allowEmpty('spring');
 
-        $validator
-            ->allowEmpty('concurrents');
-
-        $validator
-            ->allowEmpty('prerequisites');
-
         return $validator;
+    }
+
+    public function saveConcurrents($id, array $concurs) {
+        $concurrents = TableRegistry::get('CourseConcurrents');
+
+        //var_dump($concurs);die();
+        foreach ($concurs as $concur) {
+            $query = $concurrents->query();
+            $query->insert(['from_id', 'to_id'])->values(['from_id' => $id, 'to_id'=>(int)$concur])->execute();
+        }
+    }
+
+    public function savePrerequisites($id, array $prereqs) {
+        $prerequisites = TableRegistry::get('CoursePrerequisites');
+
+        foreach ($prereqs as $prereq) {
+            $query = $prerequisites->query();
+            $query->insert(['from_id', 'to_id'])->values(['from_id' => $id, 'to_id'=>(int)$prereq])->execute();
+        }
+    }
+
+    public function deleteAssociations($id) {
+        $concurrents = TableRegistry::get('CourseConcurrents');
+        $prerequisites = TableRegistry::get('CoursePrerequisites');
+
+        $queryC = $concurrents->query();
+        $queryC->delete()
+            ->where(['from_id'=>$id])
+            ->execute();
+
+        $queryC = $concurrents->query();
+        $queryC->delete()
+            ->where(['to_id'=>$id])
+            ->execute();
+
+        $queryP = $prerequisites->query();
+        $queryP->delete()
+            ->where(['from_id'=>$id])
+            ->execute();
+
+        $queryP = $prerequisites->query();
+        $queryP->delete()
+            ->where(['to_id'=>$id])
+            ->execute();
     }
 
     /**

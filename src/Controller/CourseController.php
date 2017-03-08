@@ -18,7 +18,7 @@ class CourseController extends AppController
      */
     public function index()
     {
-        $course = $this->paginate($this->Course);
+        $course = $this->paginate($this->Course->find()->contain(['Concurrents', 'Prerequisites']));
 
         $this->set(compact('course'));
         $this->set('_serialize', ['course']);
@@ -51,9 +51,12 @@ class CourseController extends AppController
         $course = $this->Course->newEntity();
         $this->set('coursenames', $this->Course->find('list'));
         if ($this->request->is('post')) {
+            //var_dump($this->request->data);die();
             $course = $this->Course->patchEntity($course, $this->request->data);
-            if ($this->Course->save($course)) {
+            if ($result=$this->Course->save($course)) {
                 $this->Flash->success(__('The course has been saved.'));
+                $this->Course->saveConcurrents($result->id, $this->request->data["concurrents"]);
+                $this->Course->savePrerequisites($result->id, $this->request->data["prerequisites"]);
 
                 return $this->redirect(['action' => 'index']);
             }
@@ -73,12 +76,27 @@ class CourseController extends AppController
     public function edit($id = null)
     {
         $course = $this->Course->get($id, [
-            'contain' => []
+            'contain' => ['Prerequisites', 'Concurrents']
         ]);
-        $this->set('coursenames', $this->Course->find('list')->contains(['Prerequisites', 'Concurrents', 'Dependents']));
+        $courseconcurrents = [];
+        foreach ($course['concurrents'] as $concurrent) {
+            array_push($courseconcurrents, $concurrent->id);
+        }
+        $courseprerequisites = [];
+        foreach ($course['prerequisites'] as $prerequisite) {
+            array_push($courseprerequisites, $prerequisite->id);
+        }
+        $this->set('coursenames', $this->Course->find('list'));
+        $this->set('courseprerequisites', $courseprerequisites);
+        $this->set('courseconcurrents', $courseconcurrents);
         if ($this->request->is(['patch', 'post', 'put'])) {
             $course = $this->Course->patchEntity($course, $this->request->data);
             if ($this->Course->save($course)) {
+                $this->Course->deleteAssociations($id);
+                $courseconcurrents = $this->request->data["concurrents"];
+                $courseprerequisites = $this->request->data["prerequisites"];
+                if (is_array($courseconcurrents)) $this->Course->saveConcurrents($id, $courseconcurrents);
+                if (is_array($courseprerequisites)) $this->Course->savePrerequisites($id, $courseprerequisites);
                 $this->Flash->success(__('The course has been saved.'));
 
                 return $this->redirect(['action' => 'index']);
@@ -101,6 +119,7 @@ class CourseController extends AppController
         $this->request->allowMethod(['post', 'delete']);
         $course = $this->Course->get($id);
         if ($this->Course->delete($course)) {
+            $this->Course->deleteAssociations($id);
             $this->Flash->success(__('The course has been deleted.'));
         } else {
             $this->Flash->error(__('The course could not be deleted. Please, try again.'));
