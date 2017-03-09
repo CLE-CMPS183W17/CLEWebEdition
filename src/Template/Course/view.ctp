@@ -21,11 +21,11 @@
         </tr>
         <tr>
             <th scope="row"><?= __('Concurrents') ?></th>
-            <td><?= h($course->concurrents) ?></td>
+            <td><?= h($course->concurrentNames()) ?></td>
         </tr>
         <tr>
             <th scope="row"><?= __('Prerequisites') ?></th>
-            <td><?= h($course->prerequisites) ?></td>
+            <td><?= h($course->prerequisiteNames()) ?></td>
         </tr>
         <tr>
             <th scope="row"><?= __('Id') ?></th>
