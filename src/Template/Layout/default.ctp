@@ -68,11 +68,6 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
   </style>
 </head>
 <body>
-    
-        <audio controls>
-  <source src="horse.ogg" type="audio/ogg">
-  Your browser does not support the audio element.
-</audio>
     <nav class="top-bar expanded" data-topbar role="navigation">
         <ul class="title-area large-3 medium-4 columns">
             <li class="name">
