@@ -54,9 +54,9 @@ Router::scope('/', function (RouteBuilder $routes) {
     /**
      * ...and connect the rest of 'Pages' controller's URLs.
      */
-    $routes->connect('/pages/*', ['controller' => 'Pages', 'action' => 'display']);
+    // $routes->connect('/pages/*', ['controller' => 'Pages', 'action' => 'display']);
 
-    $routes->redirect('/','https://cmps183.herokuapp.com/course');
+    $routes->redirect('/','/course/');
 
     /**
      * Connect catchall routes for all controllers.
