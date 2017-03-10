@@ -166,29 +166,34 @@ class CourseController extends AppController
                 if($myCourse->isused || $myCourse->nexttermindex != $myTermIndex) {
                     continue;
                 }
-                $myCurrentCourse = &$myCourse;
+                $myCurrentCourse = $myCourse;
 
-                if(!empty($myCourse->prerequisites)) {
+                if(!empty($myCourse->prerequisites) && !$this->hasFullyUsedCourses($myCourse->prerequisites)) {
+                    $myCourse->nexttermindex++;
                     $myCurrentCourse = $this->getPrereq($myCourse, $myTermIndex);
 
                     if($myCurrentCourse->units + $myTermUnits <= $myTermLimit) {
+                        debug("okay.");
                         array_push($myCurrentTerm, $myCurrentCourse);
                         $myCurrentCourse->isused = true;
+                        debug($myCourse->isused);
                         $myTermUnits += $myCurrentCourse->units;
                     } else {
                         $myCurrentCourse->nexttermindex++;
                     }
-                } else if(!empty($myCourse->concurrents)) {
+                } else if(!empty($myCourse->concurrents) && !$this->hasFullyUsedCourses($myCourse->concurrents)) {
                     $hasUnsatPrereqs = $this->checkForPrereqs($myCourse->concurrents, $myTermIndex);
 
                     if($hasUnsatPrereqs) {
                         $myCourse->nexttermindex++;
-                        $myCurrentCourse = $this->getPrereq($myCourse);
+                        $myCurrentCourse = $this->getPrereq($myCourse, $myTermIndex);
 
                         if($myCurrentCourse->units + $myTermUnits <= $myTermLimit) {
                             array_push($myCurrentTerm, $myCurrentCourse);
                             $myTermUnits += $myCurrentCourse->units;
                             $myCurrentCourse->isused = true;
+                        } else {
+                            $myCurrentCourse->nexttermindex++;
                         }
                     } else {
                         $myConcurUnits = 0;
@@ -209,26 +214,40 @@ class CourseController extends AppController
                             foreach($myCourse->concurrents as $myConcurCourse) {
                                 $myConcurCourse->nexttermindex++;
                             }
+                            $myCourse->nexttermindex++;
                         }
+                    }
+                } else {
+                    if($myCurrentCourse->units + $myTermUnits <= $myTermLimit) {
+                        debug("hmm..");
+                        debug($myCurrentCourse->name);
+                        debug($myCurrentCourse->isused);
+                        array_push($myCurrentTerm, $myCurrentCourse);
+                        $myCurrentCourse->isused = true;
+                        $myTermUnits += $myCurrentCourse->units;
+                    } else {
+                        $myCurrentCourse->nexttermindex++;
                     }
                 }
             }
             array_push($myTerms, $myCurrentTerm);
-            //debug($myTermIndex);
+            debug($myTermIndex);
             $myTermIndex++;
         }
 
         $myQuarterNumber = 0;
         foreach($myTerms as $myCurrentTerm) {
             $myQuarterNumber++;
-            debug("Quarter " + $myQuarterNumber + ": \n");
+            debug("Quarter");
             foreach($myCurrentTerm as $myCourse) {
-                debug($myCourse->name + " " + $myCourse->units + " Units");
+                $myResultLine = $myCourse->name . ": " . $myCourse->units . " Units";
+                debug($myResultLine);
             }
         }
+        die();
     }
 
-    public function getPrereq(&$myCourse = null, &$termIndex) {
+    public function &getPrereq(&$myCourse = null, &$termIndex) {
         if($myCourse == null) {
             echo "Course Controller Error: null reference given for myCourse.";
             return -1;
