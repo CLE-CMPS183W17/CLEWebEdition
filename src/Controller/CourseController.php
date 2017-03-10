@@ -137,18 +137,21 @@ class CourseController extends AppController
 
     public function processTerms() {
         $myTermLimit = 15;
-        $amountOfTermsInYear = 3;
         $myTermIndex = 0;
         // $hasSummerCourses = false;
         // if($this->summerCoursesExist()) {
         //     $hasSummerCourses = true;
         // }
 
-        $rawCourseList = TableRegistry::get('course')->find()->contain(['Concurrents', 'Prerequisites']);
-        $yearCount = 1;
+        $rawCourseList = TableRegistry::get('course')->find()->contain(['Prerequisites', 'Concurrents']);
         $myTerms = [];
+
+        foreach($rawCourseList as $myCourse) {
+            $myCourse->nexttermindex = 0;
+            $myCourse->isused = false;
+        }
         // array_push($myTerms, []);
-        // var_dump($myTerms);die();
+        // debug($myTerms);die();
 
         // $course = TableRegistry::get('course')->find()->contain(['Concurrents', 'Prerequisites'])
         // ->first();
@@ -156,36 +159,52 @@ class CourseController extends AppController
         // var_dump($course->concurrents[0]->units);die();
 
         while(!$this->hasFullyUsedCourses($rawCourseList)) {
-            if($myTermIndex != 0 && $myTermIndex % $amountOfTermsInYear == 0) {
-                $yearCount++;
-            }
             $myCurrentTerm = [];
             $myTermUnits = 0;
 
             foreach($rawCourseList as $myCourse) {
-                if($myCourse->isused) {
+                if($myCourse->isused || $myCourse->nexttermindex != $myTermIndex) {
                     continue;
                 }
+                $myCurrentCourse = &$myCourse;
 
                 if(!empty($myCourse->prerequisites)) {
-                    
+                    $myCurrentCourse = $this->getPrereq($myCourse, $myTermIndex);
+
+                    if($myCurrentCourse->units + $myTermUnits <= $myTermLimit) {
+                        array_push($myCurrentTerm, $myCurrentCourse);
+                        $myCurrentCourse->isused = true;
+                        $myTermUnits += $myCurrentCourse->units;
+                    } else {
+                        $myCurrentCourse->nexttermindex++;
+                    }
                 } else if(!empty($myCourse->concurrents)) {
-                    $hasUnsatPrereqs = $this->checkForPrereqs($myCourse->concurrents);
+                    $hasUnsatPrereqs = $this->checkForPrereqs($myCourse->concurrents, $myTermIndex);
 
                     if($hasUnsatPrereqs) {
                         $myCourse->nexttermindex++;
-                        $myCourse = $this->getPrereq($myCourse);
+                        $myCurrentCourse = $this->getPrereq($myCourse);
+
+                        if($myCurrentCourse->units + $myTermUnits <= $myTermLimit) {
+                            array_push($myCurrentTerm, $myCurrentCourse);
+                            $myTermUnits += $myCurrentCourse->units;
+                            $myCurrentCourse->isused = true;
+                        }
                     } else {
                         $myConcurUnits = 0;
                         foreach($myCourse->concurrents as $myConcurCourse) {
                             $myConcurUnits += $myConcurCourse->units;
                         }
 
-                        if($myConcurUnits + $myTermUnits <= $myTermUnits) {
+                        if($myConcurUnits + $myTermUnits <= $myTermLimit) {
                             foreach($myCourse->concurrents as $myConcurCourse) {
                                 array_push($myCurrentTerm, $myConcurCourse);
                                 $myTermUnits += $myConcurCourse->units;
+                                $myConcurCourse->isused = true;
                             }
+                            array_push($myCurrentTerm, $myCurrentCourse);
+                            $myTermUnits += $myCurrentCourse->units;
+                            $myCurrentCourse->isused = true;
                         } else {
                             foreach($myCourse->concurrents as $myConcurCourse) {
                                 $myConcurCourse->nexttermindex++;
@@ -193,14 +212,57 @@ class CourseController extends AppController
                         }
                     }
                 }
+            }
+            array_push($myTerms, $myCurrentTerm);
+            //debug($myTermIndex);
+            $myTermIndex++;
+        }
 
+        $myQuarterNumber = 0;
+        foreach($myTerms as $myCurrentTerm) {
+            $myQuarterNumber++;
+            debug("Quarter " + $myQuarterNumber + ": \n");
+            foreach($myCurrentTerm as $myCourse) {
+                debug($myCourse->name + " " + $myCourse->units + " Units");
             }
         }
     }
 
-    public function hasFullyUsedCourses($myCourses = null) {
+    public function getPrereq(&$myCourse = null, &$termIndex) {
+        if($myCourse == null) {
+            echo "Course Controller Error: null reference given for myCourse.";
+            return -1;
+        }
+
+        // var_dump($myCourse);die();
+        if($myCourse->prerequisites == null) {
+            return $myCourse;
+        }
+        foreach($myCourse->prerequisites as $myPrereqCourse) {
+            if(!$myPrereqCourse->isused && $myPrereqCourse->nexttermindex == $termIndex) {
+                return $myPrereqCourse;
+            }
+        }
+        return $myCourse;
+    }
+
+    public function checkForPrereqs(&$myConcurrents = null, &$myTermIndex) {
+        if($myConcurrents == null) {
+            echo "Course Controller Error: null reference given for myConcurrents.";
+            return -1;
+        }
+
+        foreach($myConcurrents as $myCourse) {
+            if(!empty($myCourse->prerequisites) && !$this->hasFullyUsedCourses($myCourse->prerequisites)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public function hasFullyUsedCourses(&$myCourses = null) {
         if($myCourses == null) {
-            echo "AAAAAAAAA!";
+            echo "Course Controller Error: null reference given for myCourse.";
             return -1;
         }
 
