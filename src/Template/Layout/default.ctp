@@ -17,6 +17,10 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
 ?>
 <!DOCTYPE html>
 <html>
+    <audio controls>
+  <source src="C:\Users\luc\Downloads\videoplayback (2).mp4" type="audio/ogg">
+  Your browser does not support the audio element.
+</audio>
 <head>
     <?= $this->Html->charset() ?>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
