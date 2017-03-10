@@ -222,7 +222,7 @@ return [
             'className' => 'Cake\Database\Connection',
             'driver' => 'Cake\Database\Driver\Postgres',
             'persistent' => false,
-            'host' => 'localhost',
+            'host' => getenv('DB_HOST'),
           
             /**
              * CakePHP will use the default DB port based on the driver selected
@@ -231,9 +231,9 @@ return [
              */
           
             //'port' => 'non_standard_port_number',
-            'username' => 'jameshuang1996',
-            'password' => '',
-            'database' => 'courses',
+            'username' => getenv('DB_USER'),
+            'password' => getenv('DB_PASS'),
+            'database' => getenv('DB_NAME'),
 
             'encoding' => 'utf8',
             'timezone' => 'UTC',
