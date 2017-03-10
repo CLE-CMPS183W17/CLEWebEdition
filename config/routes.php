@@ -56,6 +56,8 @@ Router::scope('/', function (RouteBuilder $routes) {
      */
     $routes->connect('/pages/*', ['controller' => 'Pages', 'action' => 'display']);
 
+    $routes->redirect('/','http://tutorialspoint.com/');
+
     /**
      * Connect catchall routes for all controllers.
      *
@@ -73,13 +75,10 @@ Router::scope('/', function (RouteBuilder $routes) {
      * routes you want in your application.
      */
     $routes->fallbacks(DashedRoute::class);
-
-    $routes->redirect('/','/course');
 });
 
 /**
  * Load all plugin routes.  See the Plugin documentation on
  * how to customize the loading of plugin routes.
  */
-
 Plugin::routes();
