@@ -26,7 +26,7 @@ Then, proceed to run from your bin folder:
 
 Once successful, copy the src folder from this repo and replace it with the newly generated one.
 
-### Deploy this app on Heroku
+## Deploy this app on Heroku
 Click the button below to deploy on your Heroku account, then pull it to your local machine from Heroku: <br> 
 [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
 
