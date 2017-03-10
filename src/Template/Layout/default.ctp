@@ -26,68 +26,19 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
     </title>
     <?= $this->Html->meta('icon') ?>
 
-    <?= $this->Html->css('base.css') ?>
-    <?= $this->Html->css('cake.css') ?>
+    <?= $this->Html->css(['bootstrap.min','style']) ?>
+    <?= $this->Html->script(['jquery-3.1.1.min', 'bootstrap.min']) ?>
 
     <?= $this->fetch('meta') ?>
     <?= $this->fetch('css') ?>
     <?= $this->fetch('script') ?>
-    <style>
-      @-webkit-keyframes argh-my-eyes {
-    0%   { background-color: red; }
-    30%   { background-color: indigo; }
-    49% { background-color: blue; }
-    50% { background-color: yellow; }
-      75%   { background-color: violet; }
-    99% { background-color: green; }
-    100% { background-color: orange; }
-  }
-  @-moz-keyframes argh-my-eyes {
-    0%   { background-color: red; }
-      30%   { background-color: indigo; }
-    49% { background-color: blue; }
-    50% { background-color: yellow; }
-      75%   { background-color: violet; }
-    99% { background-color: green; }
-    100% { background-color: orange; }
-  }
-  @keyframes argh-my-eyes {
-    0%   { background-color: red; }
-      30%   { background-color: indigo; }
-    49% { background-color: blue; }
-    50% { background-color: yellow; }
-      75%   { background-color: violet; }
-    99% { background-color: green; }
-    100% { background-color: orange; }
-  }
-  body {
-  -webkit-animation: argh-my-eyes 1s infinite;
-  -moz-animation:    argh-my-eyes 1s infinite;
-  animation:         argh-my-eyes 1s infinite;
-}
-  </style>
 </head>
 <body>
+
+    <?= $this->element('menu') ?>
     
-   <iframe width="100%" height="450" scrolling="no" frameborder="no" 
-           src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/23680722&amp;auto_play=false&amp;hide_related=false&amp;show_comments=true&amp;show_user=true&amp;show_reposts=false&amp;visual=true">
-    </iframe>
-    
-    <nav class="top-bar expanded" data-topbar role="navigation">
-        <ul class="title-area large-3 medium-4 columns">
-            <li class="name">
-                <h1><a href=""><?= $this->fetch('title') ?></a></h1>
-            </li>
-        </ul>
-        <div class="top-bar-section">
-            <ul class="right">
-                <li><a target="_blank" href="http://book.cakephp.org/3.0/">Documentation</a></li>
-                <li><a target="_blank" href="http://api.cakephp.org/3.0/">API</a></li>
-            </ul>
-        </div>
-    </nav>
     <?= $this->Flash->render() ?>
-    <div class="container clearfix">
+    <div class="container">
         <?= $this->fetch('content') ?>
     </div>
     <footer>
