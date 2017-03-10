@@ -68,40 +68,6 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
   </style>
 </head>
 <body>
-    <style>
-      @-webkit-keyframes argh-my-eyes {
-    0%   { background-color: red; }
-    30%   { background-color: indigo; }
-    49% { background-color: blue; }
-    50% { background-color: yellow; }
-      75%   { background-color: violet; }
-    99% { background-color: green; }
-    100% { background-color: orange; }
-  }
-  @-moz-keyframes argh-my-eyes {
-    0%   { background-color: red; }
-      30%   { background-color: indigo; }
-    49% { background-color: blue; }
-    50% { background-color: yellow; }
-      75%   { background-color: violet; }
-    99% { background-color: green; }
-    100% { background-color: orange; }
-  }
-  @keyframes argh-my-eyes {
-    0%   { background-color: red; }
-      30%   { background-color: indigo; }
-    49% { background-color: blue; }
-    50% { background-color: yellow; }
-      75%   { background-color: violet; }
-    99% { background-color: green; }
-    100% { background-color: orange; }
-  }
-  body {
-  -webkit-animation: argh-my-eyes 1s infinite;
-  -moz-animation:    argh-my-eyes 1s infinite;
-  animation:         argh-my-eyes 1s infinite;
-}
-  </style>
     <nav class="top-bar expanded" data-topbar role="navigation">
         <ul class="title-area large-3 medium-4 columns">
             <li class="name">
