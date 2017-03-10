@@ -2,6 +2,7 @@
 namespace App\Controller;
 
 use App\Controller\AppController;
+use Cake\ORM\TableRegistry;
 
 /**
  * Course Controller
@@ -49,9 +50,8 @@ class CourseController extends AppController
     public function add()
     {
         $course = $this->Course->newEntity();
-        $this->set('coursenames', $this->Course->find('list'));
+        $this->set('coursenames', TableRegistry::get('course')->find('list'));
         if ($this->request->is('post')) {
-            //var_dump($this->request->data);die();
             $course = $this->Course->patchEntity($course, $this->request->data);
             if($course->units > 0) {
                 if ($result=$this->Course->save($course)) {
@@ -89,7 +89,7 @@ class CourseController extends AppController
         foreach ($course['prerequisites'] as $prerequisite) {
             array_push($courseprerequisites, $prerequisite->id);
         }
-        $this->set('coursenames', $this->Course->find('list'));
+        $this->set('coursenames', $this->Course->find('list')->where(["id !=" => $course->id]));
         $this->set('courseprerequisites', $courseprerequisites);
         $this->set('courseconcurrents', $courseconcurrents);
         if ($this->request->is(['patch', 'post', 'put'])) {
@@ -133,5 +133,93 @@ class CourseController extends AppController
         }
 
         return $this->redirect(['action' => 'index']);
+    }
+
+    public function processTerms() {
+        $myTermLimit = 15;
+        $amountOfTermsInYear = 3;
+        $myTermIndex = 0;
+        // $hasSummerCourses = false;
+        // if($this->summerCoursesExist()) {
+        //     $hasSummerCourses = true;
+        // }
+
+        $rawCourseList = TableRegistry::get('course')->find()->contain(['Concurrents', 'Prerequisites']);
+        $yearCount = 1;
+        $myTerms = [];
+        // array_push($myTerms, []);
+        // var_dump($myTerms);die();
+
+        // $course = TableRegistry::get('course')->find()->contain(['Concurrents', 'Prerequisites'])
+        // ->first();
+        //
+        // var_dump($course->concurrents[0]->units);die();
+
+        while(!$this->hasFullyUsedCourses($rawCourseList)) {
+            if($myTermIndex != 0 && $myTermIndex % $amountOfTermsInYear == 0) {
+                $yearCount++;
+            }
+            $myCurrentTerm = [];
+            $myTermUnits = 0;
+
+            foreach($rawCourseList as $myCourse) {
+                if($myCourse->isused) {
+                    continue;
+                }
+
+                if(!empty($myCourse->prerequisites)) {
+                    
+                } else if(!empty($myCourse->concurrents)) {
+                    $hasUnsatPrereqs = $this->checkForPrereqs($myCourse->concurrents);
+
+                    if($hasUnsatPrereqs) {
+                        $myCourse->nexttermindex++;
+                        $myCourse = $this->getPrereq($myCourse);
+                    } else {
+                        $myConcurUnits = 0;
+                        foreach($myCourse->concurrents as $myConcurCourse) {
+                            $myConcurUnits += $myConcurCourse->units;
+                        }
+
+                        if($myConcurUnits + $myTermUnits <= $myTermUnits) {
+                            foreach($myCourse->concurrents as $myConcurCourse) {
+                                array_push($myCurrentTerm, $myConcurCourse);
+                                $myTermUnits += $myConcurCourse->units;
+                            }
+                        } else {
+                            foreach($myCourse->concurrents as $myConcurCourse) {
+                                $myConcurCourse->nexttermindex++;
+                            }
+                        }
+                    }
+                }
+
+            }
+        }
+    }
+
+    public function hasFullyUsedCourses($myCourses = null) {
+        if($myCourses == null) {
+            echo "AAAAAAAAA!";
+            return -1;
+        }
+
+        foreach($myCourses as $myCourse) {
+            if(!$myCourse->isused) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public function summerCoursesExist() {
+        $myCourses = TableRegistry::get('course')->find();
+
+        foreach($myCourses as $myCourse) {
+            if($myCourse->summer) {
+                return true;
+            }
+        }
+        return false;
     }
 }
