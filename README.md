@@ -32,22 +32,24 @@ Click the button below to deploy on your Heroku account, then pull it to your lo
 
 **Note:** If you have access to this Heroku app, then follow the steps below:
 
-1. Clone this app to your local machine: <br>
+1. Follow this [link](https://devcenter.heroku.com/articles/heroku-cli) to install Heroku on your local machine and login to Heroku
+
+2. Clone this app to your local machine: <br>
 `$ heroku git:clone -a myremoteapp`
 
-2. Adding Heroku's remote: <br>
+3. Adding Heroku's remote: <br>
 `$ git remote add heroku https://git.heroku.com/myremoteapp.git `
 
-3. Pull the database from Heroku to a new database into your local machine: <br>
+4. Pull the database from Heroku to a new database into your local machine: <br>
 `$ heroku pg:pull DATABASE_URL mylocaldb -- app myremoteapp` <br>
 
-4. If you want to test it in your local machine, then edit the lines below in `root/config/app.php` to configure your local database (make sure your have the permission to this database), then re-bake the app: <br>
+5. If you want to test it in your local machine, then edit the lines below in `root/config/app.php` to configure your local database (make sure your have the permission to this database), then re-bake the app: <br>
 `'host' => getenv('DB_HOST')` <br>
 `'username' => getenv('DB_USER')` <br>
 `'password' => getenv('DB_PASS')` <br>
 `'database' => getenv('DB_NAME')` <br> <br>
 `$ bin/cake bake all` <br>
 
-5. Push to Heroku database: <br>
+6. Push to Heroku database: <br>
 `$ heroku pg:reset` <br>
 `$ heroku pg:push mylocaldb DATABASE_URL --app myremoteapp` <br>
