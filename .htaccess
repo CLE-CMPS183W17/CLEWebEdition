@@ -1,6 +1,2 @@
-<IfModule mod_rewrite.c>
-   RewriteEngine on
-   RewriteRule    ^$    webroot/    [L]
-   RewriteRule    (.*) webroot/$1    [L]
-   RewriteRule ^$ /course/ [R=301,L]
-</IfModule>
+RewriteEngine on
+RewriteRule ^$ /course/ [L]
