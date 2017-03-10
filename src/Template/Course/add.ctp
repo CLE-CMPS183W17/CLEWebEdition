@@ -13,7 +13,7 @@
         <?= $this->Form->create($course, ['novalidate']) ?>
         <fieldset>
         <?php
-            echo $this->Form->input('name', ['label' => 'Namee']);
+            echo $this->Form->input('name', ['label' => 'Course']);
             echo $this->Form->input('units');
             echo $this->Form->input('summer');
             echo $this->Form->input('fall');
