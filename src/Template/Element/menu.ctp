@@ -14,7 +14,10 @@
     <?php if (!isset($course->id)): ?>
         <ul class="nav navbar-nav">
           <li>
-               <?= $this->Html->link('Add Course', [ 'action' => 'add']) ?>
+            <?= $this->Html->link('Add Course', [ 'action' => 'add']) ?>
+          </li>
+          <li>
+            <?= $this->Form->postLink(__('Count'), ['action' => 'process']) ?>
           </li>
         </ul>
     <?php endif; ?>
