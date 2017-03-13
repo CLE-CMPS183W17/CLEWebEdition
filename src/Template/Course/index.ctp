@@ -44,8 +44,8 @@
                             <td class="actions">
 
 <!--                                  <?= $this->Html->link(__('View'), ['action' => 'view', $course->id], ['class' => 'btn btn-sm btn-info glyphicon glyphicon-zoom-in']) ?> -->
-                                <?= $this->Html->link(__('Edit'), ['action' => 'edit', $course->id], ['class' => 'btn btn-sm btn-primary'] ) ?>
-                                <?= $this->Form->postLink('Delete', ['action' => 'delete', $course->id], ['confirm' => 'Are you sure you want to delete?', 'class' => 'btn btn-sm btn-danger']) ?>
+                                <?= $this->Html->link(__(''), ['action' => 'edit', $course->id], ['class' => 'btn btn-sm btn-primary glyphicon glyphicon-edit'] ) ?>
+                                <?= $this->Form->postLink('', ['action' => 'delete', $course->id], ['confirm' => 'Are you sure you want to delete?', 'class' => 'btn btn-sm btn-danger glyphicon glyphicon-trash']) ?>
                             </td>
                         </tr>
                         <?php endforeach; ?>
