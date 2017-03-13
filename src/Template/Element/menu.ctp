@@ -19,6 +19,9 @@
           <li>
             <?= $this->Form->postLink(__('Count'), ['action' => 'process']) ?>
           </li>
+          <li>
+            <?= $this->Form->postLink('Clear', ['action' => 'deleteAll'], ['confirm' => 'Delete all courses?']) ?>
+        </li>
         </ul>
     <?php endif; ?>
 

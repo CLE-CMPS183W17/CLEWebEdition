@@ -18,8 +18,8 @@
             echo $this->Form->input('fall');
             echo $this->Form->input('winter');
             echo $this->Form->input('spring');
-            echo $this->Form->input('concurrents', array('type'=>'select', 'options'=>$coursenames, 'multiple'=>true, 'val'=>$courseconcurrents));
-            echo $this->Form->input('prerequisites', array('type'=>'select','options'=>$coursenames, 'multiple'=>true, 'val'=>$courseprerequisites));
+            echo $this->Form->input('concurrents', array('type'=>'select', 'options'=>$coursenames, 'multiple'=>true, 'val'=>$courseconcurrents, 'empty'=>true));
+            echo $this->Form->input('prerequisites', array('type'=>'select','options'=>$coursenames, 'multiple'=>true, 'val'=>$courseprerequisites, 'empty'=>true));
         ?>
     </fieldset>
     <?= $this->Form->button(__('Submit'), ['class' => 'btn btn-primary']) ?>

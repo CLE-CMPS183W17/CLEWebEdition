@@ -135,6 +135,25 @@ class CourseController extends AppController
         return $this->redirect(['action' => 'index']);
     }
 
+
+
+
+    public function deleteAll()
+    {
+        $this->request->allowMethod(['post', 'deleteAll']);
+        
+        if($this->Course->deleteAll(null)) {
+            $this->Flash->success(__('All course have been deleted.'));
+        } else {
+            $this->Flash->error(__('You have no course to delete.'));
+        }
+        return $this->redirect(['action' => 'index']);
+    }
+
+
+
+
+
     public function process() {
         $myTermLimit = 15;
         $myTermIndex = 0;
