@@ -16,7 +16,7 @@
         <div class="col-md-auto">
             <div class="page-header">
                 <h2>
-                    Course
+                    College Length Estimator
                 </h2>
             </div>
 

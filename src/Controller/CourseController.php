@@ -135,7 +135,7 @@ class CourseController extends AppController
         return $this->redirect(['action' => 'index']);
     }
 
-    public function processTerms() {
+    public function process() {
         $myTermLimit = 15;
         $myTermIndex = 0;
         // $hasSummerCourses = false;
@@ -200,14 +200,8 @@ class CourseController extends AppController
             $myTermIndex++;
         }
 
-        foreach($myTerms as $myCurrentTerm) {
-            debug("Quarter");
-            foreach($myCurrentTerm as $myCourse) {
-                $myResultLine = $myCourse->name . ": " . $myCourse->units . " Units";
-                debug($myResultLine);
-            }
-        }
-        die();
+        $this->set(['myTerms'=>$myTerms, 'myTermIndex'=>$myTermIndex]);
+
     }
 
     public function &prerequisiteHelper(&$myPrereqCourse = null, &$myTermIndex, &$myCurrentTerm, &$myTermUnits, &$myTermLimit, &$nexttermindex) {
