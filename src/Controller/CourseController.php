@@ -2,6 +2,7 @@
 namespace App\Controller;
 
 use App\Controller\AppController;
+use Cake\ORM\TableRegistry;
 
 /**
  * Course Controller
@@ -49,9 +50,8 @@ class CourseController extends AppController
     public function add()
     {
         $course = $this->Course->newEntity();
-        $this->set('coursenames', $this->Course->find('list'));
+        $this->set('coursenames', TableRegistry::get('course')->find('list'));
         if ($this->request->is('post')) {
-            //var_dump($this->request->data);die();
             $course = $this->Course->patchEntity($course, $this->request->data);
             if($course->units > 0) {
                 if ($result=$this->Course->save($course)) {
@@ -89,7 +89,7 @@ class CourseController extends AppController
         foreach ($course['prerequisites'] as $prerequisite) {
             array_push($courseprerequisites, $prerequisite->id);
         }
-        $this->set('coursenames', $this->Course->find('list'));
+        $this->set('coursenames', $this->Course->find('list')->where(["id !=" => $course->id]));
         $this->set('courseprerequisites', $courseprerequisites);
         $this->set('courseconcurrents', $courseconcurrents);
         if ($this->request->is(['patch', 'post', 'put'])) {
@@ -133,5 +133,156 @@ class CourseController extends AppController
         }
 
         return $this->redirect(['action' => 'index']);
+    }
+
+    public function processTerms() {
+        $myTermLimit = 15;
+        $myTermIndex = 0;
+        // $hasSummerCourses = false;
+        // if($this->summerCoursesExist()) {
+        //     $hasSummerCourses = true;
+        // }
+
+        $rawCourseList = $this->Course->find()->contain(['Prerequisites', 'Concurrents', 'Dependents']);
+        $myTerms = [];
+
+        $nexttermindex = [];
+        foreach($rawCourseList as $myCourse) {
+            if($myCourse->units > $myTermLimit) {
+                echo "Process Term Error: Course given that exceeds term limit.";
+                return -1;
+            }
+            $nexttermindex[$myCourse->id] = 0;
+        }
+
+        while(!$this->hasFullyUsedCourses($rawCourseList, $nexttermindex)) {
+            $myCurrentTerm = [];
+            $myTermUnits = 0;
+
+            foreach($rawCourseList as $myCourse) {
+                if($nexttermindex[$myCourse->id] != $myTermIndex) {
+                    continue;
+                }
+
+                //Priorities:
+                //1. Check if course has prerequisite. If so and it's not used,
+                //return it and check this course later.
+                if(!empty($myCourse->prerequisites) && !$this->hasFullyUsedCourses($myCourse->prerequisites, $nexttermindex)) {
+                    $myCourse = $this->prerequisiteHelper($myCourse, $myTermIndex, $myCurrentTerm, $myTermUnits, $myTermLimit, $nexttermindex);
+                }
+                //2. Does this course have concurrents? If so, get all of them,
+                //make sure they don't have any prerequisites either, and if
+                //they do not, make sure they can fit in the current term, and
+                //put them in there if they do.
+                if(!empty($myCourse->concurrents) && !$this->hasFullyUsedCourses($myCourse->concurrents, $nexttermindex)) {
+                    $myCourse = $this->concurrentHelper($myCourse, $myTermIndex, $myCurrentTerm, $myTermUnits, $myTermLimit, $nexttermindex);
+                }
+
+                if($nexttermindex[$myCourse->id] == $myTermIndex) {
+                    if($myCourse->units + $myTermUnits <= $myTermLimit) {
+                        $myTermUnits += $myCourse->units;
+                        $nexttermindex[$myCourse->id] = -1;
+                        array_push($myCurrentTerm, $myCourse);
+
+                        if(!empty($myCourse->dependents)) {
+                            foreach($myCourse->dependents as $myFutureCourse) {
+                                if($nexttermindex[$myFutureCourse->id] == $myTermIndex) {
+                                    $nexttermindex[$myFutureCourse->id]++;
+                                }
+                            }
+                        }
+                    } else {
+                        $nexttermindex[$myCourse->id]++;
+                    }
+                }
+            }
+            array_push($myTerms, $myCurrentTerm);
+            $myTermIndex++;
+        }
+
+        foreach($myTerms as $myCurrentTerm) {
+            debug("Quarter");
+            foreach($myCurrentTerm as $myCourse) {
+                $myResultLine = $myCourse->name . ": " . $myCourse->units . " Units";
+                debug($myResultLine);
+            }
+        }
+        die();
+    }
+
+    public function &prerequisiteHelper(&$myPrereqCourse = null, &$myTermIndex, &$myCurrentTerm, &$myTermUnits, &$myTermLimit, &$nexttermindex) {
+        if($myPrereqCourse == null) {
+            echo "prerequisiteHelper Error: null reference given for myPrereqCourse";
+            return -1;
+        }
+
+        if($myPrereqCourse->prerequisites == null || $nexttermindex[$myPrereqCourse->id] != $myTermIndex) {
+            return $myCourse;
+        }
+
+        foreach($myPrereqCourse->prerequisites as $myCourse) {
+            if($nexttermindex[$myCourse->id] == $myTermIndex) {
+                if(!empty($myCourse->concurrents) && !$this->hasFullyUsedCourses($myCourse->concurrents, $nexttermindex)) {
+                    return $this->concurrentHelper($myCourse, $myTermIndex, $myCurrentTerm, $myTermUnits, $myTermLimit, $nexttermindex);
+                }
+                return $myCourse;
+            }
+        }
+        return $myPrereqCourse;
+    }
+
+    public function concurrentHelper(&$myConcurrentCourse = null, &$myTermIndex, &$myCurrentTerm, &$myTermUnits, &$myTermLimit, &$nexttermindex) {
+        if($myConcurrentCourse == null) {
+            echo "concurrentHelper Error: null reference given for myConcurrentCourse or myCurrentTerm.";
+            return -1;
+        }
+
+        if($nexttermindex[$myConcurrentCourse->id] != $myTermIndex) {
+            return $myConcurrentCourse;
+        }
+
+        foreach($myConcurrentCourse->concurrents as $myCourse) {
+            if(!empty($myCourse->prerequisites) && !$this->hasFullyUsedCourses($myCourse->prerequisites, $nexttermindex)) {
+                return $this->prerequisiteHelper($myCourse, $myTermIndex, $myCurrentTerm, $myTermUnits, $myTermLimit, $nexttermindex);
+            }
+        }
+
+        $concurrentUnits = 0;
+        foreach($myConcurrentCourse->concurrents as $myCourse) {
+            $concurrentUnits += $myCourse->units;
+        }
+
+        if($concurrentUnits > $myTermLimit) {
+            echo "Course Controller Error: Impossible concurrent chain given for defined Quarter Limit.";
+            return -1;
+        }
+
+        if($concurrentUnits + $myTermUnits <= $myTermLimit) {
+            foreach($myConcurrentCourse->concurrents as $myCourse) {
+                $myTermUnits += $myCourse->units;
+                $nexttermindex[$myCourse->id] = -1;
+                array_push($myCurrentTerm, $myCourse);
+            }
+        } else {
+            foreach($myConcurrentCourse->concurrents as $myCourse) {
+                $nexttermindex[$myCourse->id]++;
+            }
+            $nexttermindex[$myConcurrentCourse->id]++;
+        }
+        return $myConcurrentCourse;
+    }
+
+    public function hasFullyUsedCourses(&$myCourses = null, &$nexttermindex) {
+        if($myCourses == null) {
+            echo "Course Controller Error: null reference given for myCourse.";
+            return -1;
+        }
+
+        foreach($myCourses as $myCourse) {
+            if($nexttermindex[$myCourse->id] > -1) {
+                return false;
+            }
+        }
+        return true;
     }
 }
