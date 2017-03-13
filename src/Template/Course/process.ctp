@@ -2,7 +2,7 @@
 	if ($myTermIndex <= 0) { ?>
 		<h3>Please go back and add course.</h3>
 	<?php }else{ ?>
-<h3>You can graduate in <?php echo "$myTermIndex"; ?> quarters!</h3>
+<h3>You can graduate in <?php echo "$myTermIndex"; ?> <?php echo ($myTermIndex > 1)?  'quarters' :  'quarter'; ?> </h3>
 <div class='container'>
 <?php
 $count = 1;
