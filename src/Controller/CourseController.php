@@ -157,6 +157,7 @@ class CourseController extends AppController
     public function process() {
         $myTermLimit = 15;
         $myTermIndex = 0;
+        $termCheck = 0;
         // $hasSummerCourses = false;
         // if($this->summerCoursesExist()) {
         //     $hasSummerCourses = true;
@@ -177,6 +178,10 @@ class CourseController extends AppController
         while(!$this->hasFullyUsedCourses($rawCourseList, $nexttermindex)) {
             $myCurrentTerm = [];
             $myTermUnits = 0;
+
+            if($termCheck > 3) {
+                $termCheck = 0;
+            }
 
             foreach($rawCourseList as $myCourse) {
                 if($nexttermindex[$myCourse->id] != $myTermIndex) {
@@ -199,17 +204,93 @@ class CourseController extends AppController
 
                 if($nexttermindex[$myCourse->id] == $myTermIndex) {
                     if($myCourse->units + $myTermUnits <= $myTermLimit) {
-                        $myTermUnits += $myCourse->units;
-                        $nexttermindex[$myCourse->id] = -1;
-                        array_push($myCurrentTerm, $myCourse);
+                        if($myCourse->fall == null && $myCourse->winter == null && $myCourse->spring == null && $myCourse->summer == null) {
+                            $myTermUnits += $myCourse->units;
+                            $nexttermindex[$myCourse->id] = -1;
+                            array_push($myCurrentTerm, $myCourse);
 
-                        if(!empty($myCourse->dependents)) {
-                            foreach($myCourse->dependents as $myFutureCourse) {
-                                if($nexttermindex[$myFutureCourse->id] == $myTermIndex) {
-                                    $nexttermindex[$myFutureCourse->id]++;
+                            if (!empty($myCourse->dependents)) {
+                                foreach ($myCourse->dependents as $myFutureCourse) {
+                                    if ($nexttermindex[$myFutureCourse->id] == $myTermIndex) {
+                                        $nexttermindex[$myFutureCourse->id]++;
+                                    }
                                 }
                             }
+
+                        } else {
+                            switch ($termCheck) {
+                                case 0:
+                                    if($myCourse->fall == 1) {
+                                        $myTermUnits += $myCourse->units;
+                                        $nexttermindex[$myCourse->id] = -1;
+                                        array_push($myCurrentTerm, $myCourse);
+
+                                        if (!empty($myCourse->dependents)) {
+                                            foreach ($myCourse->dependents as $myFutureCourse) {
+                                                if ($nexttermindex[$myFutureCourse->id] == $myTermIndex) {
+                                                    $nexttermindex[$myFutureCourse->id]++;
+                                                }
+                                            }
+                                        }
+                                    } else {
+                                        $nexttermindex[$myCourse->id]++;
+                                    }
+                                    break;
+                                case 1:
+                                    if($myCourse->winter == 1) {
+                                        $myTermUnits += $myCourse->units;
+                                        $nexttermindex[$myCourse->id] = -1;
+                                        array_push($myCurrentTerm, $myCourse);
+
+                                        if (!empty($myCourse->dependents)) {
+                                            foreach ($myCourse->dependents as $myFutureCourse) {
+                                                if ($nexttermindex[$myFutureCourse->id] == $myTermIndex) {
+                                                    $nexttermindex[$myFutureCourse->id]++;
+                                                }
+                                            }
+                                        }
+                                    } else {
+                                        $nexttermindex[$myCourse->id]++;
+                                    }
+                                    break;
+                                case 2:
+                                    if($myCourse->spring == 1) {
+                                        $myTermUnits += $myCourse->units;
+                                        $nexttermindex[$myCourse->id] = -1;
+                                        array_push($myCurrentTerm, $myCourse);
+
+                                        if (!empty($myCourse->dependents)) {
+                                            foreach ($myCourse->dependents as $myFutureCourse) {
+                                                if ($nexttermindex[$myFutureCourse->id] == $myTermIndex) {
+                                                    $nexttermindex[$myFutureCourse->id]++;
+                                                }
+                                            }
+                                        }
+                                    } else {
+                                        $nexttermindex[$myCourse->id]++;
+                                    }
+                                    break;
+                                case 3:
+                                    if($myCourse->summer == 1) {
+                                        $myTermUnits += $myCourse->units;
+                                        $nexttermindex[$myCourse->id] = -1;
+                                        array_push($myCurrentTerm, $myCourse);
+
+                                        if (!empty($myCourse->dependents)) {
+                                            foreach ($myCourse->dependents as $myFutureCourse) {
+                                                if ($nexttermindex[$myFutureCourse->id] == $myTermIndex) {
+                                                    $nexttermindex[$myFutureCourse->id]++;
+                                                }
+                                            }
+                                        }
+                                    } else {
+                                        $nexttermindex[$myCourse->id]++;
+                                    }
+                                    break;
+                            }
+
                         }
+
                     } else {
                         $nexttermindex[$myCourse->id]++;
                     }
@@ -217,6 +298,7 @@ class CourseController extends AppController
             }
             array_push($myTerms, $myCurrentTerm);
             $myTermIndex++;
+            $termCheck++;
         }
 
         $this->set(['myTerms'=>$myTerms, 'myTermIndex'=>$myTermIndex]);
