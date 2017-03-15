@@ -185,12 +185,23 @@ class CourseController extends AppController
                     unset($mySubset[$index]);
                     continue;
                 }
-                $course = $this->Course->get($courseid, ['contain' => ['Prerequisites', 'Concurrents']]);
+                $course = $this->Course->get($courseid, ['contain' => ['Prerequisites', 'Concurrents.Prerequisites']]);
                 $cost = $course->units;
                 $takeable = true;
                 if ($course->concurrents != null) {
                     foreach ($course->concurrents as $concur) {
                         $cost += $concur->units;
+                        if ($concur->prerequisites != null) {
+                            foreach ($concur->prerequisites as $prereq) {
+                                if (!in_array($prereq->id, $taken)) {
+                                    $takeable = false;
+                                    //debug('prereq '.$prereq->id.' for '.$courseid.' not satisfied');
+                                    if (!in_array($prereq->id, $mySubset)) {
+                                        array_push($mySubset, $prereq->id);
+                                    }
+                                }
+                            }
+                        }
                     }
                 }
                 if ($cost > $myTermLimit) {
@@ -224,7 +235,7 @@ class CourseController extends AppController
                     $passes++;
                     continue;
                 }
-        	if (!($course->fall || $course->winter || $course->spring || $course->summer)) {
+                if (!($course->fall || $course->winter || $course->spring || $course->summer)) {
                 } elseif ($myTermIndex % 4 == 0) {
                     if (!$course->fall || !$myFall) $takeable = false;
                 } elseif ($myTermIndex % 4 == 1) {

@@ -90,6 +90,7 @@ class CourseTable extends Table
         //var_dump($concurs);die();
         foreach ($concurs as $concur) {
             $query = $concurrents->query();
+            $query->insert(['from_id', 'to_id'])->values(['to_id' => $id, 'from_id'=>(int)$concur])->execute();
             $query->insert(['from_id', 'to_id'])->values(['from_id' => $id, 'to_id'=>(int)$concur])->execute();
         }
     }
