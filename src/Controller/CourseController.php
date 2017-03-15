@@ -177,11 +177,11 @@ class CourseController extends AppController
         $curterm = [];
         $passes = 0;
         $curtermlimit = $myTermLimit;
+        $maxPasses = $minPasses + count($mySubset);
         while (!empty($mySubset) && $myTermIndex <= $timeout) {
-            //debug($mySubset);
             //debug($taken);
+            //debug($myTermIndex);
             foreach ($mySubset as $index => $courseid) {
-                $maxPasses = $minPasses + count($mySubset);
                 if (in_array($courseid, $tobetaken) || in_array($courseid, $taken)) {
                     //debug('inarray');
                     unset($mySubset[$index]);
@@ -198,8 +198,9 @@ class CourseController extends AppController
                                 if (!in_array($prereq->id, $taken)) {
                                     $takeable = false;
                                     //debug('prereq '.$prereq->id.' for '.$courseid.' not satisfied');
-                                    if (!in_array($prereq->id, $mySubset)) {
+                                    if (!in_array($prereq->id, $mySubset) && !in_array($prereq->id, $tobetaken)) {
                                         array_push($mySubset, $prereq->id);
+                                        $passes = 0;
                                     }
                                 }
                             }
@@ -208,15 +209,6 @@ class CourseController extends AppController
                 }
                 if ($cost > $myTermLimit) {
                     print_r('Course '.$course->name.' requires enrollment in more than '.$myTermLimit.' units!'); die();
-                }
-                if ($passes >= $maxPasses) {
-                    $passes = 0;
-                    $schedule[$myTermIndex] = $curterm;
-                    $curterm = [];
-                    $myTermIndex++;
-                    $curtermlimit = $myTermLimit;
-                    $taken = array_merge($taken, $tobetaken);
-                    $tobetaken = [];
                 }
                 if ($cost > $curtermlimit) {
                     $takeable = false;
@@ -227,15 +219,12 @@ class CourseController extends AppController
                         if (!in_array($prereq->id, $taken)) {
                             $takeable = false;
                             //debug('prereq '.$prereq->id.' for '.$courseid.' not satisfied');
-                            if (!in_array($prereq->id, $mySubset)) {
+                            if (!in_array($prereq->id, $mySubset) && !in_array($prereq->id, $tobetaken)) {
                                 array_push($mySubset, $prereq->id);
+                                $passes = 0;
                             }
                         }
                     }
-                }
-                if (!$takeable) {
-                    $passes++;
-                    continue;
                 }
                 if (!($course->fall || $course->winter || $course->spring || $course->summer)) {
                 } elseif ($myTermIndex % 4 == 0) {
@@ -260,7 +249,17 @@ class CourseController extends AppController
                     $curtermlimit -= $cost;
                     $passes = 0;
                 } else {
+                    $maxPasses = $minPasses + count($mySubset);
                     $passes++;
+                }
+                if ($passes >= $maxPasses) {
+                    $passes = 0;
+                    $schedule[$myTermIndex] = $curterm;
+                    $curterm = [];
+                    $myTermIndex++;
+                    $curtermlimit = $myTermLimit;
+                    $taken = array_merge($taken, $tobetaken);
+                    $tobetaken = [];
                 }
             }
         }
