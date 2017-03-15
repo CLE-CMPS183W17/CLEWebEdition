@@ -1,5 +1,5 @@
 <?php 
-        foreach ($myTerm as $myCurrentTerm) {
+        foreach ($myTerms as $myCurrentTerm) {
             if (empty($myCurrentTerm)) $myTermIndex--;
         }
 	if ($myTermIndex <= 0) { ?>
