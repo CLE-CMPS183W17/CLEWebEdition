@@ -209,13 +209,9 @@ class CourseController extends AppController
                             $nexttermindex[$myCourse->id] = -1;
                             array_push($myCurrentTerm, $myCourse);
 
-                            if (!empty($myCourse->dependents)) {
-                                foreach ($myCourse->dependents as $myFutureCourse) {
-                                    if ($nexttermindex[$myFutureCourse->id] == $myTermIndex) {
-                                        $nexttermindex[$myFutureCourse->id]++;
-                                    }
-                                }
-                            }
+                        if(!empty($myCourse->dependents)) {
+                            $this->updateDependents($myCourse, $myTermIndex, $nexttermindex);
+                        }
 
                         } else {
                             switch ($termCheck) {
@@ -324,6 +320,38 @@ class CourseController extends AppController
             }
         }
         return $myPrereqCourse;
+    }
+    
+    public function updateDependents(&$myCourse, &$myTermIndex, &$nexttermindex) {
+        foreach($myCourse->dependents as $myFutureCourse) {
+            $myFutureCourse = $this->Course->find()
+                ->where(['id' => $myFutureCourse->id])
+                ->contain(['Prerequisites', 'Concurrents', 'Dependents']);
+            $myFutureCourse = $myFutureCourse->first();
+
+            if(!empty($myFutureCourse->dependents)) {
+                $this->updateDependents($myFutureCourse, $myTermIndex, $nexttermindex);
+            }
+        }
+
+        foreach($myCourse->dependents as $myFutureCourse) {
+            $myFutureCourse = $this->Course->find()
+                ->where(['id' => $myFutureCourse->id])
+                ->contain(['Prerequisites', 'Concurrents', 'Dependents']);
+            $myFutureCourse = $myFutureCourse->first();
+
+            if(!empty($myFutureCourse->concurrents)) {
+                foreach($myFutureCourse->concurrents as $myCCourse) {
+                    if($nexttermindex[$myCCourse->id] == $myTermIndex) {
+                        $nexttermindex[$myCCourse->id]++;
+                    }
+                }
+            }
+
+            if($nexttermindex[$myFutureCourse->id] == $myTermIndex) {
+                $nexttermindex[$myFutureCourse->id]++;
+            }
+        }
     }
 
     public function concurrentHelper(&$myConcurrentCourse = null, &$myTermIndex, &$myCurrentTerm, &$myTermUnits, &$myTermLimit, &$nexttermindex) {
