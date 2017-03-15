@@ -151,18 +151,22 @@ class CourseController extends AppController
     }
 
 
-
+    public function userinfo() {
+        $this->set('coursenames', TableRegistry::get('course')->find('list'));
+    }
 
 
     public function process() {
-        $myTermLimit = 15;
+        $myTermLimit = intval($this->request->getData('TermLimit'));
+        $mySubset = array_map('intval', $this->request->getData('Subset'));
         $myTermIndex = 0;
         // $hasSummerCourses = false;
         // if($this->summerCoursesExist()) {
         //     $hasSummerCourses = true;
         // }
 
-        $rawCourseList = $this->Course->find()->contain(['Prerequisites', 'Concurrents', 'Dependents']);
+        $rawCourseList = $this->Course->find('all')->where(['id IN' => $mySubset])->contain(['Prerequisites', 'Concurrents', 'Dependents']);
+	//var_dump($rawCourseList);die();
         $myTerms = [];
 
         $nexttermindex = [];

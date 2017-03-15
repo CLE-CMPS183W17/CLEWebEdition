@@ -17,7 +17,7 @@
             <?= $this->Html->link('Add Course', [ 'action' => 'add']) ?>
           </li>
           <li>
-            <?= $this->Form->postLink(__('Count'), ['action' => 'process']) ?>
+            <?= $this->Form->postLink(__('Count'), ['action' => 'userinfo']) ?>
           </li>
           <li>
             <?= $this->Form->postLink('Clear', ['action' => 'deleteAll'], ['confirm' => 'Delete all courses?']) ?>
