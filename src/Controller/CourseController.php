@@ -202,7 +202,7 @@ class CourseController extends AppController
                     $myCourse = $this->concurrentHelper($myCourse, $myTermIndex, $myCurrentTerm, $myTermUnits, $myTermLimit, $nexttermindex);
                 }
 
-                if($nexttermindex[$myCourse->id] <= $myTermIndex) {
+                if($nexttermindex[$myCourse->id] == $myTermIndex) {
                     if($myCourse->units + $myTermUnits <= $myTermLimit) {
                         if($myCourse->fall == null && $myCourse->winter == null && $myCourse->spring == null && $myCourse->summer == null) {
                             $myTermUnits += $myCourse->units;
