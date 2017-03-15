@@ -170,7 +170,7 @@ class CourseController extends AppController
     {
         $this->request->allowMethod(['post', 'deleteAll']);
 
-        if($this->Course->deleteAll(null)) {
+        if($this->Course->deleteAll(null) && $this->Course->deleteAssociations(null)) {
             $this->Flash->success(__('All course have been deleted.'));
         } else {
             $this->Flash->error(__('You have no course to delete.'));

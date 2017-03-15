@@ -108,6 +108,13 @@ class CourseTable extends Table
     public function deleteAssociations($id) {
         $concurrents = TableRegistry::get('CourseConcurrents');
         $prerequisites = TableRegistry::get('CoursePrerequisites');
+        if ($id == null) {
+            $queryC = $concurrents->query();
+            $queryC->delete()->execute();
+            $queryP = $prerequisites->query();
+            $queryP->delete()->execute();
+            return true;
+        }
         $queryC = $concurrents->query();
         $queryC->delete()
             ->where(['from_id'=>$id])
