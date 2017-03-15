@@ -221,12 +221,8 @@ class CourseController extends AppController
                                         $nexttermindex[$myCourse->id] = -1;
                                         array_push($myCurrentTerm, $myCourse);
 
-                                        if (!empty($myCourse->dependents)) {
-                                            foreach ($myCourse->dependents as $myFutureCourse) {
-                                                if ($nexttermindex[$myFutureCourse->id] == $myTermIndex) {
-                                                    $nexttermindex[$myFutureCourse->id]++;
-                                                }
-                                            }
+                                        if(!empty($myCourse->dependents)) {
+                                            $this->updateDependents($myCourse, $myTermIndex, $nexttermindex);
                                         }
                                     } else {
                                         $nexttermindex[$myCourse->id]++;
@@ -238,12 +234,8 @@ class CourseController extends AppController
                                         $nexttermindex[$myCourse->id] = -1;
                                         array_push($myCurrentTerm, $myCourse);
 
-                                        if (!empty($myCourse->dependents)) {
-                                            foreach ($myCourse->dependents as $myFutureCourse) {
-                                                if ($nexttermindex[$myFutureCourse->id] == $myTermIndex) {
-                                                    $nexttermindex[$myFutureCourse->id]++;
-                                                }
-                                            }
+                                        if(!empty($myCourse->dependents)) {
+                                            $this->updateDependents($myCourse, $myTermIndex, $nexttermindex);
                                         }
                                     } else {
                                         $nexttermindex[$myCourse->id]++;
@@ -255,12 +247,8 @@ class CourseController extends AppController
                                         $nexttermindex[$myCourse->id] = -1;
                                         array_push($myCurrentTerm, $myCourse);
 
-                                        if (!empty($myCourse->dependents)) {
-                                            foreach ($myCourse->dependents as $myFutureCourse) {
-                                                if ($nexttermindex[$myFutureCourse->id] == $myTermIndex) {
-                                                    $nexttermindex[$myFutureCourse->id]++;
-                                                }
-                                            }
+                                        if(!empty($myCourse->dependents)) {
+                                            $this->updateDependents($myCourse, $myTermIndex, $nexttermindex);
                                         }
                                     } else {
                                         $nexttermindex[$myCourse->id]++;
@@ -272,12 +260,8 @@ class CourseController extends AppController
                                         $nexttermindex[$myCourse->id] = -1;
                                         array_push($myCurrentTerm, $myCourse);
 
-                                        if (!empty($myCourse->dependents)) {
-                                            foreach ($myCourse->dependents as $myFutureCourse) {
-                                                if ($nexttermindex[$myFutureCourse->id] == $myTermIndex) {
-                                                    $nexttermindex[$myFutureCourse->id]++;
-                                                }
-                                            }
+                                        if(!empty($myCourse->dependents)) {
+                                            $this->updateDependents($myCourse, $myTermIndex, $nexttermindex);
                                         }
                                     } else {
                                         $nexttermindex[$myCourse->id]++;
