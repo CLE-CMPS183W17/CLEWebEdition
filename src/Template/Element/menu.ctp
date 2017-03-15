@@ -20,7 +20,7 @@
             <?= $this->Form->postLink(__('Estimate'), ['action' => 'userinfo']) ?>
           </li>
           <li>
-            <?= $this->Form->postLink('Clear', ['action' => 'deleteAll'], ['confirm' => 'Delete all courses?']) ?>
+            <?= $this->Form->postLink('Delete all courses', ['action' => 'deleteAll'], ['confirm' => 'Delete all courses?']) ?>
         </li>
         </ul>
     <?php endif; ?>
