@@ -304,6 +304,10 @@ class CourseController extends AppController
                 if(!empty($myCourse->concurrents) && !$this->hasFullyUsedCourses($myCourse->concurrents, $nexttermindex)) {
                     return $this->concurrentHelper($myCourse, $myTermIndex, $myCurrentTerm, $myTermUnits, $myTermLimit, $nexttermindex);
                 }
+		
+		if(!array_key_exists($myCourse->id, $nexttermindex)) {
+            	    $nexttermindex[$myCourse->id] = $myTermIndex;
+            	}
                 return $myCourse;
             }
         }
