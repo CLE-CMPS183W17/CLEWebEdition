@@ -22,7 +22,7 @@ class CourseController extends AppController
         $course->units = $this->request->getData('Units');
         $course->name = $this->request->getData('Name');
         $result=$this->Course->save($course);
-        print_r($result->id);die();
+        if($result) print_r($result->id);die();
     }
 
     public function linkuploads($id)

@@ -170,7 +170,10 @@ for course in sorted(list(courses.values()), key=lambda c: c['Name']):
 		print json.dumps(course)
 		r = requests.post('http://cle-app.herokuapp.com/course/upload', data=course)
 		print r.text
-		coursesbyid[int(r.text)] = course
+		try:
+			coursesbyid[int(r.text)] = course
+		except ValueError:
+			pass
 
 for cid, course in coursesbyid:
 	r = requests.post('http://cle-app.herokuapp.com/course/linkuploads/' + str(cid), data=course)
