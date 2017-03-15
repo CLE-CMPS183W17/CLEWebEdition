@@ -156,7 +156,8 @@ class CourseController extends AppController
     }
 
     public function process() {
-        $maxPasses = 5;
+        $timeout = 32;
+        $minPasses = 2;
         $myTermLimit = intval($this->request->getData('TermLimit'));
         $mySubset = array_map('intval', $this->request->getData('Subset'));
         $myFall = $this->request->getData('fall') == '1';
@@ -176,10 +177,11 @@ class CourseController extends AppController
         $curterm = [];
         $passes = 0;
         $curtermlimit = $myTermLimit;
-        while (!empty($mySubset)) {
+        while (!empty($mySubset) && $myTermIndex <= $timeout) {
             //debug($mySubset);
             //debug($taken);
             foreach ($mySubset as $index => $courseid) {
+                $maxPasses = $minPasses + count($mySubset);
                 if (in_array($courseid, $tobetaken) || in_array($courseid, $taken)) {
                     //debug('inarray');
                     unset($mySubset[$index]);
@@ -264,6 +266,7 @@ class CourseController extends AppController
         }
         $schedule[$myTermIndex] = $curterm;
         $myTermIndex++;
+        if ($myTermIndex > $timeout) $this->Flash->error(__('The courseload you have chosen cannot be completed. Either a cycle exists, you have chosen too many courses, or there are too many prerequisites.'));
         $this->set(['myTerms'=>$schedule, 'myTermIndex'=>$myTermIndex]);
     }
 }
