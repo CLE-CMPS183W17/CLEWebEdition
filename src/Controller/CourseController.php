@@ -30,14 +30,20 @@ class CourseController extends AppController
         $this->Course->deleteAssociations($id);
         $prereqs = [];
         foreach ($this->request->getData('Prerequisites') as $prereq) {
-            array_push($prereqs, $this->find('first')->where(['Course.name LIKE' => "$prereq:%"])->id);
+            $result = $this->find('first')->where(['Course.name LIKE' => "$prereq:%"]);
+            if ($result)
+                array_push($prereqs, $result->id);
         }
         $concurs = [];
         foreach ($this->request->getData('Concurrents') as $concur) {
-            array_push($concurs, $this->find('first')->where(['Course.name LIKE' => "$concur:%"])->id);
+            $result = $this->find('first')->where(['Course.name LIKE' => "$concur:%"]);
+            if ($result)
+            	array_push($concurs, $result->id);
         }
-        $this->Course->savePrerequisites($id, $prereqs);
-        $this->Course->saveConcurrents($id, $concurs);
+	if (!empty($prereqs))
+            $this->Course->savePrerequisites($id, $prereqs);
+        if (!empty($concurs))
+            $this->Course->saveConcurrents($id, $concurs);
     }
 
     /**

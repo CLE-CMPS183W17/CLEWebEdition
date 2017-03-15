@@ -42,7 +42,7 @@ class MyIndexHTMLParser(HTMLParser):
 		elif (tag == 'li' and self.level == 2):
 			self.level += 1
 		elif (tag == 'a' and self.level == 3 and 'href' in attr):
-			courses[attr['href'].split('/')[2]] = {'url' : 'https://courses.soe.ucsc.edu' + attr['href'], 'Fall' : False, 'Winter' : False, 'Spring': False, 'Summer': False, 'Prerequisites': [], 'Concurrents': []}
+			courses[attr['href'].split('/')[2]] = {'url' : 'https://courses.soe.ucsc.edu' + attr['href'], 'Fall' : 0, 'Winter' : 0, 'Spring': 0, 'Summer': 0, 'Prerequisites': [], 'Concurrents': []}
 			self.level += 1
 
 	def handle_endtag(self, tag):
@@ -84,13 +84,13 @@ class MyCourseHTMLParser(HTMLParser):
 			self.level += 1
 		elif (self.inyear and 'href' in attr):
 			if ('Fall' in attr['href']):
-				self.course['Fall'] = True
+				self.course['Fall'] = 1
 			if ('Summer' in attr['href']):
-				self.course['Summer'] = True
+				self.course['Summer'] = 1
 			if ('Winter' in attr['href']):
-				self.course['Winter'] = True
+				self.course['Winter'] = 1
 			if ('Spring' in attr['href']):
-				self.course['Spring'] = True
+				self.course['Spring'] = 1
 
 	def handle_endtag(self, tag):
 		if (tag == 'div' and self.level == 1 and self.divs == 0):
@@ -165,9 +165,11 @@ for course in sorted(list(courses.values()), key=lambda c: c['Name']):
 	parser = MyCourseHTMLParser(course)
 	parser.feed(r.text)
 	del course['url']
+	course['Name'] = course['Name'][:50]
 	if (course['Fall'] or course['Winter'] or course['Spring'] or course['Summer']):
 		print json.dumps(course)
 		r = requests.post('http://cle-app.herokuapp.com/course/upload', data=course)
+		print r.text
 		coursesbyid[int(r.text)] = course
 
 for cid, course in coursesbyid:
