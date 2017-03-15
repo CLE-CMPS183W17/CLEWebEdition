@@ -165,18 +165,22 @@ class CourseController extends AppController
         // if($this->summerCoursesExist()) {
         //     $hasSummerCourses = true;
         // }
+        $rawCourseList = $this->Course->find('all');
+        $nexttermindex = [];
+        foreach($rawCourseList as $myCourse) {
+            $nexttermindex[$myCourse->id] = 0;
+        }
+
 
         $rawCourseList = $this->Course->find('all')->where(['id IN' => $mySubset])->contain(['Prerequisites', 'Concurrents', 'Dependents']);
 	//var_dump($rawCourseList);die();
         $myTerms = [];
 
-        $nexttermindex = [];
         foreach($rawCourseList as $myCourse) {
             if($myCourse->units > $myTermLimit) {
                 echo "Process Term Error: Course given that exceeds term limit.";
                 return -1;
             }
-            $nexttermindex[$myCourse->id] = 0;
         }
 
         while(!$this->hasFullyUsedCourses($rawCourseList, $nexttermindex)) {
