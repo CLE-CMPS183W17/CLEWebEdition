@@ -163,6 +163,9 @@ class CourseController extends AppController
         $myWinter = $this->request->getData('winter') == '1';
         $mySpring = $this->request->getData('spring') == '1';
         $mySummer = $this->request->getData('summer') == '1';
+        if (!($myFall || $myWinter || $mySpring || $mySummer)) {
+            print_r('You need to attend at least one quarter a year...'); die();
+        }
         if (empty($mySubset)) {
             print_r('Why did you expect that to work? Go back and actually select some courses.'); die();
         }
@@ -182,7 +185,7 @@ class CourseController extends AppController
                     unset($mySubset[$index]);
                     continue;
                 }
-                $course = $this->Course->get($courseid, ['contain' => 'Prerequisites', 'Concurrents']);
+                $course = $this->Course->get($courseid, ['contain' => ['Prerequisites', 'Concurrents']]);
                 $cost = $course->units;
                 $takeable = true;
                 if ($course->concurrents != null) {
@@ -221,7 +224,8 @@ class CourseController extends AppController
                     $passes++;
                     continue;
                 }
-                if ($myTermIndex % 4 == 0) {
+        	if (!($course->fall || $course->winter || $course->spring || $course->summer)) {
+                } elseif ($myTermIndex % 4 == 0) {
                     if (!$course->fall || !$myFall) $takeable = false;
                 } elseif ($myTermIndex % 4 == 1) {
                     if (!$course->winter || !$myWinter) $takeable = false;
@@ -234,7 +238,6 @@ class CourseController extends AppController
                     //debug($courseid.' is takeable');
                     array_push($curterm, $course);
                     array_push($tobetaken, $course->id);
-                    debug($course->Concurrents);
                     if ($course->concurrents != null) {
                         foreach ($course->concurrents as $concur) {
                             array_push($curterm, $concur);
