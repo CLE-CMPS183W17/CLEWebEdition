@@ -7,7 +7,7 @@
 
         <ul class="nav navbar-nav">
             <li>
-                <?= $this->Html->link('List Course', ['action' => 'index']) ?>
+                <?= $this->Html->link('List Courses', ['action' => 'index']) ?>
             </li>
         </ul>
             
