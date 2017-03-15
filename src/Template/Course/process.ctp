@@ -1,4 +1,7 @@
 <?php 
+        foreach ($myTerm as $myCurrentTerm) {
+            if (empty($myCurrentTerm)) $myTermIndex--;
+        }
 	if ($myTermIndex <= 0) { ?>
 		<h3>Please go back and add course.</h3>
 	<?php }else{ ?>
