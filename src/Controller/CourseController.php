@@ -165,10 +165,12 @@ class CourseController extends AppController
         $mySpring = $this->request->getData('spring') == '1';
         $mySummer = $this->request->getData('summer') == '1';
         if (!($myFall || $myWinter || $mySpring || $mySummer)) {
-            print_r('You need to attend at least one quarter a year...'); die();
+            $this->Flash->error(__('You need to attend at least one quarter a year...'));
+            return $this->redirect(['action' => 'userinfo']);
         }
         if (empty($mySubset)) {
-            print_r('Why did you expect that to work? Go back and actually select some courses.'); die();
+            $this->Flash->error(__('Why did you expect that to work? Go back and actually select some courses.'));
+            return $this->redirect(['action' => 'userinfo']);
         }
         $myTermIndex = 0;
         $taken = [];
