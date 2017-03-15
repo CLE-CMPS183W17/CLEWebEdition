@@ -6,11 +6,20 @@
 <div class='container'>
 <?php
 $count = 1;
-foreach($myTerms as $myCurrentTerm) {?>
+foreach($myTerms as $myCurrentTerm) {
+    if (empty($myCurrentTerm)) {
+        $count++;
+        continue;
+    }
+    if ($count % 4 == 1) $quar = 'Fall';
+    elseif ($count % 4 == 2) $quar = 'Winter';
+    elseif ($count % 4 == 3) $quar = 'Spring';
+    else $quar = 'Summer';
+?>
 	
 	<p class="well">
 
-    <b><?php echo "Quarter: $count<br>"; ?></b>
+    <b><?php echo "$quar, Year ".(floor(($count - 1)/4) + 1).":<br>"; ?></b>
     <?php foreach($myCurrentTerm as $myCourse) {
         echo "$myCourse->name - $myCourse->units units <br>";
     } ?>
