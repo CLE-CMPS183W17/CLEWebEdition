@@ -12,6 +12,34 @@ use Cake\ORM\TableRegistry;
 class CourseController extends AppController
 {
 
+    public function upload()
+    {
+        $course = $this->Course->newEntity();
+        $course->summer = $this->request->getData('Summer');
+        $course->fall = $this->request->getData('Fall');
+        $course->winter = $this->request->getData('Winter');
+        $course->spring = $this->request->getData('Spring');
+        $course->units = $this->request->getData('Units');
+        $course->name = $this->request->getData('Name');
+        $result=$this->Course->save($course);
+        print_r($result->id);die();
+    }
+
+    public function linkuploads($id)
+    {
+        $this->Course->deleteAssociations($id);
+        $prereqs = [];
+        foreach ($this->request->getData('Prerequisites') as $prereq) {
+            array_push($prereqs, $this->find('first')->where(['Course.name LIKE' => "$prereq:%"])->id);
+        }
+        $concurs = [];
+        foreach ($this->request->getData('Concurrents') as $concur) {
+            array_push($concurs, $this->find('first')->where(['Course.name LIKE' => "$concur:%"])->id);
+        }
+        $this->Course->savePrerequisites($id, $prereqs);
+        $this->Course->saveConcurrents($id, $concurs);
+    }
+
     /**
      * Index method
      *
