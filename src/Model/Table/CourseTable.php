@@ -39,8 +39,14 @@ class CourseTable extends Table
     $this->belongsToMany('Concurrents', [
         'className' => 'Course',
         'through' => 'course_concurrents',
-        'foreignKey' => 'from_id',
-        'targetForeignKey' => 'to_id'
+	'foreignKey' => 'from_id',
+	'targetForeignKey' => 'to_id',
+        //'conditions' => [
+        //    'OR' => [
+        //        'CourseConcurrents.to_id = Course.id',
+        //        'CourseConcurrents.from_id = Course.id'
+        //    ],
+        //],
     ]);
     $this->belongsToMany('Dependents', [
         'className' => 'Course',
