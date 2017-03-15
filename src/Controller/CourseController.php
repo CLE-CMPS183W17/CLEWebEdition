@@ -165,10 +165,10 @@ class CourseController extends AppController
         // if($this->summerCoursesExist()) {
         //     $hasSummerCourses = true;
         // }
-        //$rawCourseList = $this->Course->find('all');
+        //$rawCourseList = array_keys($this->Course->find('list')->toArray());
         $nexttermindex = [];
         //foreach($rawCourseList as $myCourse) {
-        //    $nexttermindex[$myCourse->id] = 0;
+        //    $nexttermindex[$myCourse] = 0;
         //}
 
 
@@ -211,16 +211,16 @@ class CourseController extends AppController
                     $myCourse = $this->concurrentHelper($myCourse, $myTermIndex, $myCurrentTerm, $myTermUnits, $myTermLimit, $nexttermindex);
                 }
 
-                if($nexttermindex[$myCourse->id] == $myTermIndex) {
+                if($nexttermindex[$myCourse->id] <= $myTermIndex) {
                     if($myCourse->units + $myTermUnits <= $myTermLimit) {
                         if($myCourse->fall == null && $myCourse->winter == null && $myCourse->spring == null && $myCourse->summer == null) {
                             $myTermUnits += $myCourse->units;
                             $nexttermindex[$myCourse->id] = -1;
                             array_push($myCurrentTerm, $myCourse);
 
-                        if(!empty($myCourse->dependents)) {
-                            $this->updateDependents($myCourse, $myTermIndex, $nexttermindex);
-                        }
+                            if(!empty($myCourse->dependents)) {
+                                $this->updateDependents($myCourse, $myTermIndex, $nexttermindex);
+                            }
 
                         } else {
                             switch ($termCheck) {
@@ -299,7 +299,9 @@ class CourseController extends AppController
             echo "prerequisiteHelper Error: null reference given for myPrereqCourse";
             return -1;
         }
-
+	if (!array_key_exists($myPrereqCourse->id, $nexttermindex)) {
+		$nexttermindex[$myPrereqCourse->id] = $myTermIndex;
+	}
         if($myPrereqCourse->prerequisites == null || $nexttermindex[$myPrereqCourse->id] != $myTermIndex) {
             return $myCourse;
         }
@@ -317,10 +319,10 @@ class CourseController extends AppController
     
     public function updateDependents(&$myCourse, &$myTermIndex, &$nexttermindex) {
         foreach($myCourse->dependents as $myFutureCourse) {
-            $myFutureCourse = $this->Course->find()
-                ->where(['id' => $myFutureCourse->id])
-                ->contain(['Prerequisites', 'Concurrents', 'Dependents']);
-            $myFutureCourse = $myFutureCourse->first();
+	    if (!array_key_exists($myFutureCourse->id, $nexttermindex)) {
+                continue;
+	    }
+            $myFutureCourse = $this->Course->get($myFutureCourse->id, ['contain' => ['Prerequisites', 'Concurrents', 'Dependents']]);
 
             if(!empty($myFutureCourse->dependents)) {
                 $this->updateDependents($myFutureCourse, $myTermIndex, $nexttermindex);
@@ -328,13 +330,16 @@ class CourseController extends AppController
         }
 
         foreach($myCourse->dependents as $myFutureCourse) {
-            $myFutureCourse = $this->Course->find()
-                ->where(['id' => $myFutureCourse->id])
-                ->contain(['Prerequisites', 'Concurrents', 'Dependents']);
-            $myFutureCourse = $myFutureCourse->first();
+	    if (!array_key_exists($myFutureCourse->id, $nexttermindex)) {
+                continue;
+	    }
+            $myFutureCourse = $this->Course->get($myFutureCourse->id, ['contain' => ['Prerequisites', 'Concurrents', 'Dependents']]);
 
             if(!empty($myFutureCourse->concurrents)) {
                 foreach($myFutureCourse->concurrents as $myCCourse) {
+	            if (!array_key_exists($myCCourse->id, $nexttermindex)) {
+		        $nexttermindex[$myCCourse->id] = $myTermIndex;
+	            }
                     if($nexttermindex[$myCCourse->id] == $myTermIndex) {
                         $nexttermindex[$myCCourse->id]++;
                     }
@@ -352,6 +357,9 @@ class CourseController extends AppController
             echo "concurrentHelper Error: null reference given for myConcurrentCourse or myCurrentTerm.";
             return -1;
         }
+	if (!array_key_exists($myConcurrentCourse->id, $nexttermindex)) {
+		$nexttermindex[$myConcurrentCourse->id] = $myTermIndex;
+	}
 
         if($nexttermindex[$myConcurrentCourse->id] != $myTermIndex) {
             return $myConcurrentCourse;
@@ -395,6 +403,9 @@ class CourseController extends AppController
         }
 
         foreach($myCourses as $myCourse) {
+	    if (!array_key_exists($myCourse->id, $nexttermindex)) {
+                $nexttermindex[$myCourse->id] = -1;
+	    }
             if($nexttermindex[$myCourse->id] > -1) {
                 return false;
             }
