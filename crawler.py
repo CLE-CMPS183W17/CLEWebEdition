@@ -65,7 +65,7 @@ class MyIndexHTMLParser(HTMLParser):
 				self.lastcname = cname[0].lower()
 				courses[self.lastcname]['Name'] = data
 			else:
-				courses[self.lastcname]['Name'] += data
+				courses[self.lastcname]['Name'] += "&" + str(data)
 
 class MyCourseHTMLParser(HTMLParser):
 	def __init__(self, course):
@@ -164,7 +164,7 @@ parser.feed(r.text)
 
 coursesbyid = {}
 
-for course in sorted(list(courses.values()), key=lambda c: c['Name']):
+for course in sorted(list(courses.values()), key=lambda c: int(re.search('\d+', c['Name']).group(0))):
 	r = requests.get(course['url'])
 	parser = MyCourseHTMLParser(course)
 	parser.feed(r.text)
@@ -180,4 +180,7 @@ for course in sorted(list(courses.values()), key=lambda c: c['Name']):
 			pass
 
 for cid, course in coursesbyid.items():
+	print 'http://cle-app.herokuapp.com/course/linkuploads/' + str(cid) + '   ' + json.dumps(course)
+	course['Prerequisites'] = json.dumps(course['Prerequisites'])
+	course['Concurrents'] = json.dumps(course['Concurrents'])
 	r = requests.post('http://cle-app.herokuapp.com/course/linkuploads/' + str(cid), data=course)
