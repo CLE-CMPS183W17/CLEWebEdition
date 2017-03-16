@@ -29,6 +29,7 @@ class MyIndexHTMLParser(HTMLParser):
 	def __init__(self):
 		self.level = 0
 		self.divs = 0
+		self.lastcname = ''
 		HTMLParser.__init__(self)
 
 	def handle_starttag(self, tag, attrs):
@@ -61,7 +62,10 @@ class MyIndexHTMLParser(HTMLParser):
 		if (self.level == 4):
 			cname = data.split(': ')
 			if (cname[0].lower() in courses):
-				courses[cname[0].lower()]['Name'] = data
+				self.lastcname = cname[0].lower()
+				courses[self.lastcname]['Name'] = data
+			else:
+				courses[self.lastcname]['Name'] += data
 
 class MyCourseHTMLParser(HTMLParser):
 	def __init__(self, course):
@@ -175,5 +179,5 @@ for course in sorted(list(courses.values()), key=lambda c: c['Name']):
 		except ValueError:
 			pass
 
-for cid, course in coursesbyid:
+for cid, course in coursesbyid.items():
 	r = requests.post('http://cle-app.herokuapp.com/course/linkuploads/' + str(cid), data=course)

@@ -29,14 +29,14 @@ class CourseController extends AppController
     {
         $this->Course->deleteAssociations($id);
         $prereqs = [];
-        foreach ($this->request->getData('Prerequisites') as $prereq) {
-            $result = $this->find('first')->where(['Course.name LIKE' => "$prereq:%"]);
+        foreach (json_decode($this->request->getData('Prerequisites')) as $prereq) {
+            $result = $this->Course->find()->where(['Course.name LIKE' => "$prereq:%"])->first();
             if ($result)
                 array_push($prereqs, $result->id);
         }
         $concurs = [];
-        foreach ($this->request->getData('Concurrents') as $concur) {
-            $result = $this->find('first')->where(['Course.name LIKE' => "$concur:%"]);
+        foreach (json_decode($this->request->getData('Concurrents')) as $concur) {
+            $result = $this->Course->find()->where(['Course.name LIKE' => "$concur:%"])->first();
             if ($result)
             	array_push($concurs, $result->id);
         }
