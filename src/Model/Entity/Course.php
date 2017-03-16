@@ -35,7 +35,7 @@ class Course extends Entity
     public function concurrentNames() {
         $out = [];
         foreach ($this['concurrents'] as $concur) {
-            array_push($out, $concur['name']);
+            array_push($out, explode(': ', $concur['name'])[0]);
         }
         return implode($out, ', ');
     }
@@ -43,7 +43,7 @@ class Course extends Entity
     public function prerequisiteNames() {
         $out = [];
         foreach ($this['prerequisites'] as $prereq) {
-            array_push($out, $prereq['name']);
+            array_push($out, explode(': ', $prereq['name'])[0]);
         }
         return implode($out, ', ');
     }

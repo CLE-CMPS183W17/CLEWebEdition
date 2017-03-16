@@ -244,7 +244,8 @@ class CourseController extends AppController
                     }
                 }
                 if ($cost > $myTermLimit) {
-                    print_r('Course '.$course->name.' requires enrollment in more than '.$myTermLimit.' units!'); die();
+                    $this->Flash->error(__('Course '.$course->name.' requires enrollment in more than '.$myTermLimit.' units!'));
+                    return $this->redirect(['action' => 'userinfo']);
                 }
                 if ($cost > $curtermlimit) {
                     $takeable = false;
